@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils/cn";
 const navLinks = [
   { href: appRoutes.premium, label: "Premium" },
   { href: appRoutes.manageSubscription, label: "Manage" },
+  { href: appRoutes.faq, label: "FAQ" },
   { href: appRoutes.about, label: "About" },
   { href: appRoutes.contact, label: "Support" },
 ];

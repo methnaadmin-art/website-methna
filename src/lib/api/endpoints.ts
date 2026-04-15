@@ -1,26 +1,27 @@
 export const backendEndpoints = {
-  plans: ["/plans/public", "/monetization/plans", "/plans"],
+  plans: ["/web/plans", "/plans/public", "/plans"],
   checkEmail: [
+    "/web/subscriptions/check-email",
     "/subscriptions/check-email",
     "/auth/check-email",
-    "/users/check-email",
   ],
   createCheckoutSession: [
+    "/web/payments/create-checkout-session",
     "/payments/create-checkout-session",
     "/billing/create-checkout-session",
-    "/subscriptions/create-checkout-session",
   ],
   terms: ["/content/terms", "/app-content/terms"],
   privacy: ["/content/privacy", "/app-content/privacy"],
-  supportTicket: ["/support/tickets", "/support", "/support/feedback"],
+  faqs: ["/content/faqs/list", "/content/faqs"],
+  supportTicket: ["/support/public", "/support", "/support/tickets"],
   subscriptionStatus: [
+    "/web/subscription/status",
     "/subscription/status",
     "/subscriptions/status",
-    "/monetization/status",
   ],
   manageSubscription: [
-    "/subscription/manage",
-    "/subscriptions/manage",
+    "/web/payments/manage-url",
     "/payments/manage-url",
+    "/subscription/manage",
   ],
 } as const;

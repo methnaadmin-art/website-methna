@@ -41,6 +41,7 @@ export const appRoutes = {
   terms: "/terms",
   privacy: "/privacy",
   contact: "/contact",
+  faq: "/faq",
   success: "/success",
   cancel: "/cancel",
 } as const;

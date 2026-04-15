@@ -25,6 +25,9 @@ export function SiteFooter() {
           <Link className="hover:text-foreground" href={appRoutes.contact}>
             Contact
           </Link>
+          <Link className="hover:text-foreground" href={appRoutes.faq}>
+            FAQ
+          </Link>
           <a
             className="hover:text-foreground"
             href={`mailto:${clientEnv.supportEmail}`}

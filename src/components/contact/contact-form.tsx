@@ -22,7 +22,7 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
     defaultValues: {
       name: "",
       email: prefilledEmail ?? "",
-      accountEmail: prefilledEmail ?? "",
+      accountEmail: "",
       subject: "",
       message: "",
     },
@@ -38,7 +38,11 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          email: values.email,
+          subject: values.subject,
+          message: values.message,
+        }),
       });
 
       const payload = (await response.json()) as ContactTicketResponse;
@@ -75,25 +79,12 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
             We respond fast
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:text-base">
-            Submit a support ticket directly to your admin panel support queue.
-            Include the app account email for faster subscription tracing.
+            Submit a support ticket and our team will get back to you as soon as possible.
           </p>
 
           <form className="mt-7 space-y-4" onSubmit={onSubmit}>
-            <Field label="Name" error={form.formState.errors.name?.message}>
-              <Input placeholder="Your full name" {...form.register("name")} />
-            </Field>
             <Field label="Email" error={form.formState.errors.email?.message}>
               <Input placeholder="you@domain.com" {...form.register("email")} />
-            </Field>
-            <Field
-              label="App account email (optional)"
-              error={form.formState.errors.accountEmail?.message}
-            >
-              <Input
-                placeholder="Same email used in app"
-                {...form.register("accountEmail")}
-              />
             </Field>
             <Field label="Subject" error={form.formState.errors.subject?.message}>
               <Input
@@ -139,11 +130,11 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
             Support workflow
           </h2>
           <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-muted">
-            <li>1. Ticket is posted to backend support queue.</li>
-            <li>2. Admin panel can triage and reply.</li>
-            <li>3. User gets guided resolution path.</li>
+            <li>1. Submit your ticket with email and details.</li>
+            <li>2. Our team reviews and triages your request.</li>
+            <li>3. You receive a response via email.</li>
             <li>
-              4. Billing issues can be mapped using app account email and plan code.
+              4. For billing issues, include your account email for faster resolution.
             </li>
           </ul>
 

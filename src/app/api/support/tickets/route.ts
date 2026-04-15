@@ -2,11 +2,17 @@ import { NextResponse } from "next/server";
 import { BackendRequestError, backendRequestFirst } from "@/lib/api/backend";
 import { backendEndpoints } from "@/lib/api/endpoints";
 import type { ContactTicketResponse } from "@/lib/api/types";
-import { contactTicketSchema } from "@/lib/validation/schemas";
+import { z } from "zod";
+
+const webTicketSchema = z.object({
+  email: z.string().email("Please enter a valid email."),
+  subject: z.string().min(3, "Subject is required.").max(200),
+  message: z.string().min(10, "Message must be at least 10 characters.").max(2000),
+});
 
 export async function POST(request: Request) {
   const payload = await request.json().catch(() => null);
-  const parsed = contactTicketSchema.safeParse(payload);
+  const parsed = webTicketSchema.safeParse(payload);
 
   if (!parsed.success) {
     return NextResponse.json<ContactTicketResponse>(
@@ -24,12 +30,9 @@ export async function POST(request: Request) {
       {
         method: "POST",
         body: {
-          name: parsed.data.name,
           email: parsed.data.email,
-          accountEmail: parsed.data.accountEmail,
           subject: parsed.data.subject,
           message: parsed.data.message,
-          type: "support",
         },
       },
     );
@@ -58,7 +61,7 @@ export async function POST(request: Request) {
         {
           success: false,
           message:
-            "Public support endpoint is not available in backend yet. Required contract: POST /support/tickets to create ticket from website.",
+            "Public support endpoint is not available in backend yet. Required contract: POST /support/public to create ticket from website.",
         },
         { status: 503 },
       );
