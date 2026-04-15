@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Methna Premium Web
 
-## Getting Started
+Premium subscription website built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and Stripe-ready backend proxy contracts.
 
-First, run the development server:
+## Features
+
+- Dynamic plans loaded from backend source of truth.
+- Mandatory email verification gate before checkout.
+- Checkout session request via backend (frontend never grants premium).
+- Success/cancel pages for Stripe redirect return.
+- Manage subscription page with status + billing portal trigger.
+- Terms/privacy pages fetched from backend content endpoints.
+- Dedicated contact page that submits support tickets.
+- Premium visual system with polished animation and responsive layouts.
+
+## Routes
+
+- `/premium`
+- `/subscription` (alias redirect)
+- `/manage-subscription`
+- `/about`
+- `/terms`
+- `/privacy`
+- `/contact`
+- `/success`
+- `/cancel`
+
+## API Proxy Routes (Next.js)
+
+- `GET /api/plans`
+- `POST /api/check-email`
+- `POST /api/checkout`
+- `GET /api/content/:slug`
+- `POST /api/support/tickets`
+- `GET /api/subscription/status`
+- `POST /api/subscription/manage`
+
+## Environment
+
+1. Copy `.env.example` to `.env.local`
+2. Set backend and Stripe values.
+
+Important defaults:
+
+- Backend base URL expected with prefix: `http://localhost:3000/api/v1`
+- Site URL: `http://localhost:3000`
+
+## Backend Gap Note
+
+Your current backend in `desktop/jord` already supports plans and content endpoints, but Stripe web checkout/public email-check routes are currently auth-only or disabled.
+
+Required contracts are documented in:
+
+- `BACKEND_CONTRACTS.md`
+
+## Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `http://localhost:3000/premium`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build
 
-## Learn More
+```bash
+npm run lint
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

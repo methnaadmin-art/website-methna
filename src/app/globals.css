@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f4ef;
+  --background-soft: #fbfaf7;
+  --foreground: #14120f;
+  --muted: #6a6458;
+  --card: #ffffff;
+  --border: #e2dccf;
+  --accent: #b88c45;
+  --accent-strong: #8f6728;
+  --accent-soft: #efe1c7;
+  --success: #2f7f5f;
+  --danger: #b54040;
+  --shadow: 0 22px 55px -34px rgba(29, 23, 13, 0.28);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
 }
 
 body {
-  background: var(--background);
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(65rem 45rem at 88% -12%, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 75%),
+    radial-gradient(52rem 30rem at -10% 25%, color-mix(in srgb, var(--accent-soft) 62%, white 38%) 0%, transparent 78%),
+    linear-gradient(180deg, var(--background-soft) 0%, var(--background) 58%, #f4efe5 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga", "kern";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 40%, white);
+  color: #20180e;
+}
+
+.premium-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 95%);
+  opacity: 0.42;
+}
+
+.section-wrap {
+  margin-inline: auto;
+  width: min(1120px, calc(100% - 2rem));
+}
+
+.gradient-text {
+  background: linear-gradient(110deg, #5b461f 0%, #b88c45 48%, #704f1d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.premium-panel {
+  border: 1px solid color-mix(in srgb, var(--border) 82%, #fff);
+  border-radius: 1.5rem;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 252, 246, 0.92) 100%);
+  box-shadow: var(--shadow);
+}
+
+.subtle-focus-ring:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 70%, white);
+  outline-offset: 2px;
 }
