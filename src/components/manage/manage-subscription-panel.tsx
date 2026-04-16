@@ -97,10 +97,10 @@ export function ManageSubscriptionPanel({
             Manage Subscription
           </p>
           <h1 className="mt-2 font-display text-5xl font-semibold tracking-tight text-foreground md:text-6xl">
-            Billing control center
+            Your premium control center
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">
-            Enter the app account email to check your subscription and open
+            Enter your app account email to review plan status and open secure
             billing management.
           </p>
 
@@ -172,10 +172,15 @@ export function ManageSubscriptionPanel({
             </div>
           ) : (
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              Check status to see current plan data and guidance for cancellation
-              or management actions.
+              Check status to view your current premium details before opening
+              billing management.
             </p>
           )}
+
+          <p className="mt-4 text-xs leading-relaxed text-muted">
+            Note: account and billing changes are applied server-side after
+            verification and may take a short moment to reflect in-app.
+          </p>
         </aside>
       </div>
     </section>

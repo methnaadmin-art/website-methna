@@ -8,7 +8,7 @@ interface ContactPageProps {
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact support and submit account-aware subscription tickets to backend admin.",
+    "Contact Methna support for account, premium, privacy, and subscription help.",
 };
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {

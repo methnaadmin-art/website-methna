@@ -3,13 +3,14 @@ import { PolicyContent } from "@/components/policy/policy-content";
 
 export const metadata: Metadata = {
   title: "Terms",
-  description: "Read Methna Terms of Service fetched from backend content manager.",
+  description:
+    "Read Methna Terms of Service for account usage, subscriptions, and user responsibilities.",
 };
 
 export default function TermsPage() {
   return (
     <PolicyContent
-      description="These terms are fetched dynamically from your backend content system."
+      description="These terms describe account, subscription, and usage conditions for Methna services."
       type="terms"
     />
   );

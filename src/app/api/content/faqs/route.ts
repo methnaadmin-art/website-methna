@@ -16,7 +16,18 @@ export async function GET(request: Request) {
     );
 
     const { data } = await backendRequestFirst<unknown>(paths);
-    const faqs = Array.isArray(data) ? data : (data as any)?.data ?? [];
+
+    const nestedData =
+      typeof data === "object" && data !== null && "data" in data
+        ? (data as { data?: unknown }).data
+        : undefined;
+
+    const faqs = Array.isArray(data)
+      ? data
+      : Array.isArray(nestedData)
+        ? nestedData
+        : [];
+
     return NextResponse.json(faqs);
   } catch (error) {
     if (error instanceof BackendRequestError && [404, 405].includes(error.status)) {

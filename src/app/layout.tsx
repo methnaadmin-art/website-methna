@@ -17,11 +17,11 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Methna Premium",
-    template: "%s | Methna Premium",
+    default: "Methna",
+    template: "%s | Methna",
   },
   description:
-    "Premium subscription portal for Methna: plans, secure checkout, and subscription management.",
+    "A Muslim matchmaking app built for serious connections, privacy, and meaningful compatibility.",
   metadataBase: new URL("http://localhost:3000"),
 };
 

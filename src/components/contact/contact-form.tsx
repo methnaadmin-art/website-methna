@@ -39,7 +39,9 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          name: values.name,
           email: values.email,
+          accountEmail: values.accountEmail?.trim() ? values.accountEmail : undefined,
           subject: values.subject,
           message: values.message,
         }),
@@ -54,7 +56,9 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
       setIsSuccess(true);
       setResponseMessage(payload.message || "Support ticket submitted.");
       form.reset({
-        ...values,
+        name: values.name,
+        email: values.email,
+        accountEmail: values.accountEmail,
         subject: "",
         message: "",
       });
@@ -76,15 +80,28 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
             Contact Support
           </p>
           <h1 className="mt-2 font-display text-5xl font-semibold tracking-tight text-foreground md:text-6xl">
-            We respond fast
+            We are here to help
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:text-base">
-            Submit a support ticket and our team will get back to you as soon as possible.
+            Reach out for account, subscription, privacy, or safety support. We
+            review requests carefully and respond with clear next steps.
           </p>
 
           <form className="mt-7 space-y-4" onSubmit={onSubmit}>
+            <Field label="Full name" error={form.formState.errors.name?.message}>
+              <Input placeholder="Your name" {...form.register("name")} />
+            </Field>
             <Field label="Email" error={form.formState.errors.email?.message}>
               <Input placeholder="you@domain.com" {...form.register("email")} />
+            </Field>
+            <Field
+              label="App account email (optional)"
+              error={form.formState.errors.accountEmail?.message}
+            >
+              <Input
+                placeholder="Use this if different from contact email"
+                {...form.register("accountEmail")}
+              />
             </Field>
             <Field label="Subject" error={form.formState.errors.subject?.message}>
               <Input
@@ -127,14 +144,14 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
             <LifeBuoy className="h-5 w-5" />
           </div>
           <h2 className="mt-3 text-xl font-semibold text-foreground">
-            Support workflow
+            What happens next
           </h2>
           <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-muted">
-            <li>1. Submit your ticket with email and details.</li>
-            <li>2. Our team reviews and triages your request.</li>
-            <li>3. You receive a response via email.</li>
+            <li>1. Submit your ticket with complete details.</li>
+            <li>2. The support team reviews and prioritizes your request.</li>
+            <li>3. You receive a reply with clear action steps.</li>
             <li>
-              4. For billing issues, include your account email for faster resolution.
+              4. For billing issues, add your app account email to speed up verification.
             </li>
           </ul>
 

@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f4ef;
-  --background-soft: #fbfaf7;
-  --foreground: #14120f;
-  --muted: #6a6458;
+  --background: #f8f6ff;
+  --background-soft: #fcfbff;
+  --foreground: #19152d;
+  --muted: #625b7d;
   --card: #ffffff;
-  --border: #e2dccf;
-  --accent: #b88c45;
-  --accent-strong: #8f6728;
-  --accent-soft: #efe1c7;
-  --success: #2f7f5f;
-  --danger: #b54040;
-  --shadow: 0 22px 55px -34px rgba(29, 23, 13, 0.28);
+  --border: #e4ddfb;
+  --accent: #5b2eff;
+  --accent-strong: #441fca;
+  --accent-soft: #efe9ff;
+  --success: #28795f;
+  --danger: #b23f68;
+  --shadow: 0 26px 62px -36px rgba(48, 35, 102, 0.34);
 }
 
 @theme inline {
@@ -39,9 +39,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(65rem 45rem at 88% -12%, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 75%),
-    radial-gradient(52rem 30rem at -10% 25%, color-mix(in srgb, var(--accent-soft) 62%, white 38%) 0%, transparent 78%),
-    linear-gradient(180deg, var(--background-soft) 0%, var(--background) 58%, #f4efe5 100%);
+    radial-gradient(65rem 48rem at 92% -8%, color-mix(in srgb, var(--accent) 20%, white 80%) 0%, transparent 76%),
+    radial-gradient(52rem 32rem at -8% 18%, color-mix(in srgb, var(--accent-soft) 72%, white 28%) 0%, transparent 79%),
+    linear-gradient(180deg, var(--background-soft) 0%, var(--background) 56%, #f3efff 100%);
   color: var(--foreground);
   font-family: var(--font-manrope), "Segoe UI", sans-serif;
   text-rendering: optimizeLegibility;
@@ -55,7 +55,7 @@ a {
 
 ::selection {
   background: color-mix(in srgb, var(--accent) 40%, white);
-  color: #20180e;
+  color: #241b44;
 }
 
 .premium-grid {
@@ -64,7 +64,7 @@ a {
     linear-gradient(to bottom, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: radial-gradient(circle at center, black 35%, transparent 95%);
-  opacity: 0.42;
+  opacity: 0.35;
 }
 
 .section-wrap {
@@ -73,17 +73,38 @@ a {
 }
 
 .gradient-text {
-  background: linear-gradient(110deg, #5b461f 0%, #b88c45 48%, #704f1d 100%);
+  background: linear-gradient(110deg, #4a28df 0%, #7a5cff 48%, #5d35ef 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .premium-panel {
-  border: 1px solid color-mix(in srgb, var(--border) 82%, #fff);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, #fff);
   border-radius: 1.5rem;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 252, 246, 0.92) 100%);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 242, 255, 0.93) 100%);
   box-shadow: var(--shadow);
+}
+
+.glass-surface {
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, white);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--accent-soft) 52%, white 48%) 0%,
+    rgba(255, 255, 255, 0.86) 100%
+  );
+  backdrop-filter: blur(14px);
+}
+
+.soft-divider {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent) 18%, var(--border)) 40%,
+    color-mix(in srgb, var(--accent) 18%, var(--border)) 60%,
+    transparent 100%
+  );
+  height: 1px;
 }
 
 .subtle-focus-ring:focus-visible {

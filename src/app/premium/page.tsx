@@ -6,9 +6,9 @@ interface PremiumPageProps {
 }
 
 export const metadata: Metadata = {
-  title: "Premium Plans",
+  title: "Methna | Serious Muslim Matchmaking",
   description:
-    "Choose your Methna premium subscription with secure account-verified checkout.",
+    "Methna is a Muslim matchmaking app designed for serious connections, privacy, and meaningful compatibility.",
 };
 
 export default async function PremiumPage({ searchParams }: PremiumPageProps) {

@@ -8,7 +8,7 @@ interface ManagePageProps {
 export const metadata: Metadata = {
   title: "Manage Subscription",
   description:
-    "Review your premium plan and open billing management for your app account.",
+    "Review your Methna premium plan status and open billing management for your account.",
 };
 
 export default async function ManageSubscriptionPage({

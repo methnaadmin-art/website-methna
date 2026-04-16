@@ -10,6 +10,37 @@ interface FaqItem {
   category: string;
 }
 
+const fallbackFaqs: FaqItem[] = [
+  {
+    id: "intent",
+    category: "Getting Started",
+    question: "Is Methna for casual dating?",
+    answer:
+      "No. Methna is built for serious, marriage-minded users who want intentional matchmaking.",
+  },
+  {
+    id: "privacy",
+    category: "Privacy & Safety",
+    question: "How does Methna protect user privacy?",
+    answer:
+      "Methna includes profile visibility controls, moderation support, and privacy-aware profile design including locked photo access rules.",
+  },
+  {
+    id: "premium-value",
+    category: "Premium",
+    question: "What do I get with Premium?",
+    answer:
+      "Premium adds practical advantages like seeing who liked you, profile boosts, ghost mode, passport mode, and stronger discovery reach.",
+  },
+  {
+    id: "verification",
+    category: "Privacy & Safety",
+    question: "Is there verification and moderation?",
+    answer:
+      "Yes. Verification and moderation pathways are part of Methna's trust and safety model.",
+  },
+];
+
 export function FaqAccordion() {
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
@@ -20,10 +51,10 @@ export function FaqAccordion() {
     fetch("/api/content/faqs")
       .then((r) => r.json())
       .then((data) => {
-        if (Array.isArray(data)) {
+        if (Array.isArray(data) && data.length > 0) {
           setFaqs(data);
         } else {
-          setFaqs([]);
+          setFaqs(fallbackFaqs);
         }
       })
       .catch(() => setError("Unable to load FAQs."))
@@ -36,13 +67,13 @@ export function FaqAccordion() {
     <section className="section-wrap py-14 md:py-20">
       <article className="premium-panel px-6 py-8 md:px-10 md:py-12">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-          Help
+          FAQ
         </p>
         <h1 className="mt-2 font-display text-5xl font-semibold tracking-tight text-foreground md:text-6xl">
-          Frequently Asked Questions
+          Answers, without the noise
         </h1>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-          Find answers to common questions about Methna.
+          Get clear guidance on premium, privacy, trust, and account support.
         </p>
 
         {loading && (
@@ -55,7 +86,7 @@ export function FaqAccordion() {
 
         {!loading && !error && faqs.length === 0 && (
           <p className="mt-8 text-sm text-muted">
-            No FAQs available yet. Please check back later or{" "}
+            No FAQs are available right now. Please check back later or{" "}
             <a href="/contact" className="text-accent-strong underline">
               contact support
             </a>
@@ -135,6 +166,20 @@ export function FaqAccordion() {
             })}
           </div>
         )}
+
+        {!loading && !error ? (
+          <div className="mt-9 rounded-2xl border border-border/70 bg-white/80 p-4 text-sm text-muted md:flex md:items-center md:justify-between">
+            <p>
+              Need help with a specific billing or account issue?
+            </p>
+            <a
+              href="/contact"
+              className="mt-2 inline-flex text-sm font-semibold text-accent-strong underline md:mt-0"
+            >
+              Contact support
+            </a>
+          </div>
+        ) : null}
       </article>
     </section>
   );
