@@ -16,7 +16,8 @@ export async function GET(request: Request) {
     );
 
     const { data } = await backendRequestFirst<unknown>(paths);
-    return NextResponse.json(data);
+    const faqs = Array.isArray(data) ? data : (data as any)?.data ?? [];
+    return NextResponse.json(faqs);
   } catch (error) {
     if (error instanceof BackendRequestError && [404, 405].includes(error.status)) {
       return NextResponse.json([], { status: 200 });
