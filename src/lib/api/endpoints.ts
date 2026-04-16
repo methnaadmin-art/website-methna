@@ -6,9 +6,9 @@ export const backendEndpoints = {
     "/auth/check-email",
   ],
   createCheckoutSession: [
+    "/web/payments/public-checkout",
     "/web/payments/create-checkout-session",
     "/payments/create-checkout-session",
-    "/billing/create-checkout-session",
   ],
   terms: ["/content/terms", "/app-content/terms"],
   privacy: ["/content/privacy", "/app-content/privacy"],
