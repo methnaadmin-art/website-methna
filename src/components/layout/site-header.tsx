@@ -6,66 +6,94 @@ import { Crown } from "lucide-react";
 import { appRoutes } from "@/lib/config/env";
 import { cn } from "@/lib/utils/cn";
 
-const navLinks = [
-  { href: `${appRoutes.premium}#intent`, label: "Intent" },
-  { href: `${appRoutes.premium}#features`, label: "Features" },
-  { href: `${appRoutes.premium}#premium`, label: "Premium" },
-  { href: `${appRoutes.premium}#safety`, label: "Safety" },
-  { href: appRoutes.about, label: "About" },
-  { href: appRoutes.faq, label: "FAQ" },
+const primaryNav = [
+  { href: `${appRoutes.premium}#vision`, label: "Our Vision" },
+  { href: `${appRoutes.premium}#community`, label: "Community" },
+  { href: `${appRoutes.premium}#process`, label: "The Process" },
+  { href: `${appRoutes.premium}#support`, label: "Support" },
+];
+
+const secondaryNav = [
+  { href: appRoutes.experience, label: "App Preview" },
+  { href: appRoutes.features, label: "Features" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background-soft/85 backdrop-blur-xl">
-      <div className="section-wrap flex h-17 items-center justify-between gap-3 py-2">
-        <Link href={appRoutes.premium} className="inline-flex items-center gap-2">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-accent/35 bg-accent-soft text-accent-strong">
-            <Crown className="h-4 w-4" />
-          </span>
-          <span className="font-display text-2xl font-semibold tracking-tight text-foreground">
-            Methna
-          </span>
-        </Link>
+    <header className="sticky top-4 z-40 px-4">
+      <div className="section-wrap">
+        <div className="rounded-[30px] border border-border/85 bg-[rgba(255,252,247,0.94)] px-5 py-4 shadow-[0_24px_60px_-40px_rgba(60,41,31,0.28)] backdrop-blur-xl">
+          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+            <div className="flex items-center justify-between gap-4">
+              <Link href={appRoutes.premium} className="inline-flex items-center gap-3">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-[var(--accent-ink)] shadow-[0_18px_40px_-26px_rgba(168,95,75,0.58)]">
+                  <Crown className="h-5 w-5" />
+                </span>
+                <span className="font-display text-[2rem] font-semibold tracking-tight text-foreground">
+                  Methna
+                </span>
+              </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-border/85 bg-white/82 p-1.5 md:flex">
-          {navLinks.map((item) => {
-            const active = item.href.startsWith(appRoutes.premium)
-              ? pathname === appRoutes.premium
-              : pathname === item.href;
+              <div className="hidden items-center gap-2 lg:flex">
+                {secondaryNav.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "rounded-full px-3 py-2 text-sm font-medium text-muted transition hover:bg-white hover:text-foreground",
+                      pathname === item.href && "bg-white shadow-sm text-foreground",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
 
-            return (
+            <nav className="hidden items-center justify-center gap-1 xl:flex">
+              {primaryNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex items-center gap-2 self-start xl:self-auto">
               <Link
-                key={item.href}
+                href={appRoutes.manageSubscription}
+                className="rounded-full px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
+              >
+                Manage
+              </Link>
+              <Link
+                href={`${appRoutes.premium}#premium-plans`}
+                className="subtle-focus-ring inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
+              >
+                Get Started
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-3 flex gap-2 overflow-x-auto xl:hidden">
+            {[...primaryNav, ...secondaryNav].map((item) => (
+              <Link
+                key={`mobile-${item.href}`}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition",
-                  active
-                    ? "bg-foreground text-white"
-                    : "text-muted hover:bg-accent-soft/50 hover:text-foreground",
+                  "shrink-0 rounded-full border border-transparent bg-white/72 px-3 py-1.5 text-xs font-semibold text-muted transition hover:border-border hover:text-foreground",
+                  pathname === item.href && "border-border text-foreground",
                 )}
               >
                 {item.label}
               </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Link
-            href={appRoutes.manageSubscription}
-            className="hidden rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground transition hover:border-accent/40 hover:bg-accent-soft/35 md:inline-flex"
-          >
-            Manage
-          </Link>
-          <a
-            href={`${appRoutes.premium}#download`}
-            className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-strong"
-          >
-            Download
-          </a>
+            ))}
+          </div>
         </div>
       </div>
     </header>

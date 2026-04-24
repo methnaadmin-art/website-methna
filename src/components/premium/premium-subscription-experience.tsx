@@ -1,22 +1,15 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
   Check,
-  Crown,
-  Eye,
   Globe,
+  Heart,
   Loader2,
-  Lock,
-  MessageCircle,
-  Rocket,
-  Shield,
-  Sparkles,
-  Stars,
+  ShieldCheck,
   Users,
+  type LucideIcon,
 } from "lucide-react";
 import { FeatureComparison } from "@/components/premium/feature-comparison";
 import { PlanCard } from "@/components/premium/plan-card";
@@ -25,173 +18,98 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { PlansPayload, PremiumPlan } from "@/lib/api/types";
 import { clientEnv } from "@/lib/config/env";
-
-const valueHighlights = [
-  {
-    title: "More visibility when timing matters",
-    description:
-      "Boost your reach, get seen faster, and connect with people who are serious about moving forward.",
-  },
-  {
-    title: "More control in discovery",
-    description:
-      "Use tools like Ghost mode and Passport mode when you want flexibility without losing privacy.",
-  },
-  {
-    title: "More confidence in every match",
-    description:
-      "Premium is designed to improve quality and clarity, not just add visual extras.",
-  },
-];
-
-interface FeaturePillar {
-  title: string;
-  subtitle: string;
-  icon: LucideIcon;
-  items: string[];
-}
-
-const intentionPillars: Array<{ title: string; description: string; icon: LucideIcon }> = [
-  {
-    title: "Intent",
-    description:
-      "Built for serious relationships and marriage-minded users, not casual swiping loops.",
-    icon: Users,
-  },
-  {
-    title: "Privacy",
-    description:
-      "Visibility controls, locked photos, and safer interactions designed to protect user comfort.",
-    icon: Lock,
-  },
-  {
-    title: "Compatibility",
-    description:
-      "Richer profile depth with values, lifestyle, timeline, and meaningful compatibility signals.",
-    icon: Sparkles,
-  },
-];
-
-const featurePillars: FeaturePillar[] = [
-  {
-    title: "Discover better",
-    subtitle: "Find relevant matches with more clarity.",
-    icon: Globe,
-    items: [
-      "Profile creation and rich preferences",
-      "Discovery and browsing with smarter filters",
-      "Like and pass flow designed for intention",
-      "Editing tools to keep your profile current",
-    ],
-  },
-  {
-    title: "Connect with clarity",
-    subtitle: "Move from interest to real conversation.",
-    icon: MessageCircle,
-    items: [
-      "Mutual matches that feel more relevant",
-      "Respectful in-app chat experience",
-      "Structured profile signals before messaging",
-      "Support for thoughtful communication",
-    ],
-  },
-  {
-    title: "Protect your privacy",
-    subtitle: "Control access, visibility, and trust.",
-    icon: Shield,
-    items: [
-      "Verification and moderation support",
-      "Blocking and account safety controls",
-      "Locked photo access rules",
-      "Password and biometric account support",
-    ],
-  },
-  {
-    title: "Stand out with premium",
-    subtitle: "Useful visibility and discovery advantages.",
-    icon: Rocket,
-    items: [
-      "See who liked you",
-      "Boost profile and expand reach",
-      "Ghost mode and Passport mode",
-      "Premium badge, more likes, boosts, and compliments",
-    ],
-  },
-];
-
-const comparisonRows = [
-  {
-    metric: "Intent",
-    casual: "Built for activity and casual engagement",
-    methna: "Built for serious connections and marriage-minded users",
-  },
-  {
-    metric: "Profile depth",
-    casual: "Mostly surface-level discovery",
-    methna: "Values, lifestyle, preferences, and timeline signals",
-  },
-  {
-    metric: "Privacy controls",
-    casual: "Limited visibility control",
-    methna: "Privacy-first discovery and stronger profile controls",
-  },
-  {
-    metric: "Safety model",
-    casual: "Reactive moderation",
-    methna: "Verification, moderation, and clearer support pathways",
-  },
-  {
-    metric: "Premium value",
-    casual: "Often cosmetic extras",
-    methna: "Practical visibility and compatibility advantages",
-  },
-];
-
-const safetyCards = [
-  {
-    title: "Verification and account trust",
-    text: "Verification helps build confidence and reduce low-quality behavior.",
-    icon: Shield,
-  },
-  {
-    title: "Moderation and reporting",
-    text: "Reporting and moderation tools support a safer and more respectful environment.",
-    icon: Eye,
-  },
-  {
-    title: "Privacy-aware visibility",
-    text: "Locked photos and profile controls add meaningful protection to discovery.",
-    icon: Lock,
-  },
-];
-
-const faqItems = [
-  {
-    question: "Is Methna for casual dating?",
-    answer:
-      "No. Methna is designed for serious relationships and marriage-minded users who want more intentional matchmaking.",
-  },
-  {
-    question: "What makes Methna different from ordinary dating apps?",
-    answer:
-      "Methna combines intentional discovery, stronger privacy controls, and richer compatibility signals in one focused experience.",
-  },
-  {
-    question: "How does premium help?",
-    answer:
-      "Premium gives you more visibility, more control, and more ways to connect through features like who liked you, boosts, ghost mode, and passport mode.",
-  },
-  {
-    question: "Does Methna support privacy and safety?",
-    answer:
-      "Yes. Privacy and trust are core product principles, with verification, moderation, profile controls, and clearer support flows.",
-  },
-];
+import { cn } from "@/lib/utils/cn";
 
 interface PremiumSubscriptionExperienceProps {
   prefilledEmail?: string;
   preselectedPlanCode?: string;
 }
+
+const philosophyPoints = [
+  {
+    title: "Intentional Discovery",
+    description:
+      "Detailed profiles focus on values, deen, and long-term aspirations instead of endless surface-level swiping.",
+  },
+  {
+    title: "Wali Integration",
+    description:
+      "Optional family involvement helps the journey stay transparent, respectful, and serious from the start.",
+  },
+  {
+    title: "Sustainable Growth",
+    description:
+      "Resources, support, and healthier communication patterns are built for what comes after the match as well.",
+  },
+];
+
+const trustCards = [
+  {
+    icon: Users,
+    title: "Verified Members",
+    description:
+      "Our verification process helps make sure every profile belongs to a real person who is serious about marriage.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Privacy-First by Design",
+    description:
+      "Your details stay yours. Visibility controls and safer defaults give you more say in who sees you and when.",
+  },
+  {
+    icon: Heart,
+    title: "Safe Interaction",
+    description:
+      "Built-in moderation tools and community guidelines keep every conversation respectful and purpose-driven.",
+  },
+];
+
+const heroFacts = [
+  { label: "Success stories", value: "600k+" },
+  { label: "Members worldwide", value: "15M" },
+  { label: "Focused discovery", value: "Marriage-first" },
+];
+
+const platformStats = [
+  {
+    icon: Globe,
+    value: "600,000",
+    label: "success stories across the world",
+  },
+  {
+    icon: Heart,
+    value: "15 million",
+    label: "members looking for meaningful connection",
+  },
+];
+
+const premiumFallbackFeatures = [
+  "See who liked you before you reply.",
+  "Travel and match in the cities you care about.",
+  "Protect your visibility when you want more privacy.",
+  "Unlock a calmer, more serious path to conversation.",
+  "Keep the same verified app-account checkout flow.",
+];
+
+const heroImage =
+  "https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?auto=format&fit=crop&w=1800&q=80";
+const familyImage =
+  "https://images.pexels.com/photos/4657988/pexels-photo-4657988.jpeg?cs=srgb&dl=pexels-lombejr-4657988.jpg&fm=jpg";
+const serenityImage =
+  "https://images.pexels.com/photos/32399750/pexels-photo-32399750.jpeg?cs=srgb&dl=pexels-through-noyan-s-lens-2151445904-32399750.jpg&fm=jpg";
+const profilePhoneImage =
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80";
+const matchPhoneLeftImage =
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80";
+const matchPhoneRightImage =
+  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80";
+
+const priceFormatter = (currency: string) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 2,
+  });
 
 export function PremiumSubscriptionExperience({
   prefilledEmail,
@@ -268,342 +186,404 @@ export function PremiumSubscriptionExperience({
     [plans],
   );
 
+  const headlinePrice = headlinePlan
+    ? priceFormatter(headlinePlan.currency || "USD").format(headlinePlan.price || 0)
+    : null;
+
+  const openPreferredPlan = () => {
+    if (headlinePlan) {
+      setSelectedPlan(headlinePlan);
+      setModalOpen(true);
+      return;
+    }
+
+    document.getElementById("premium-plans")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const premiumHighlights =
+    headlinePlan?.features.slice(0, 5) ?? premiumFallbackFeatures;
+
   return (
     <>
-      <section className="section-wrap relative overflow-hidden pt-12 pb-12 md:pt-20 md:pb-16">
-        <motion.div
-          className="pointer-events-none absolute -left-6 top-8 h-44 w-44 rounded-full bg-accent-soft blur-3xl"
-          animate={{ x: [0, 14, 0], y: [0, -10, 0] }}
-          transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY }}
-        />
-        <motion.div
-          className="pointer-events-none absolute -right-4 top-6 h-60 w-60 rounded-full bg-accent-soft/80 blur-3xl"
-          animate={{ x: [0, -20, 0], y: [0, 8, 0] }}
-          transition={{ duration: 11, repeat: Number.POSITIVE_INFINITY }}
-        />
+      <section id="vision" className="section-wrap pt-6 md:pt-8">
+        <div className="relative overflow-hidden rounded-[40px] border border-[#eadccf] bg-[#1e1713] text-white shadow-[0_45px_110px_-70px_rgba(56,37,29,0.75)]">
+          <img
+            alt="A joyful Muslim couple enjoying a peaceful outdoor moment together"
+            className="absolute inset-0 h-full w-full object-cover"
+            src={heroImage}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(102deg,rgba(33,22,18,0.84)_18%,rgba(55,38,29,0.46)_52%,rgba(25,16,12,0.72)_100%)]" />
+          <div className="premium-hero-lines absolute inset-0" />
 
-        <div className="premium-panel relative overflow-hidden px-6 py-10 md:px-12 md:py-14">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-accent-soft/85 to-transparent" />
+          <div className="relative px-6 py-12 md:px-10 md:py-16 lg:px-14 lg:py-20">
+            <div className="max-w-[46rem]">
+              <Badge className="border-white/16 bg-white/10 text-white">
+                Rooted Tradition, Built for the Future
+              </Badge>
 
-          <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <Badge>Muslim Matchmaking App</Badge>
-              <h1 className="mt-4 font-display text-5xl font-semibold leading-[0.92] tracking-tight text-foreground md:text-7xl">
-                Serious connections,
-                <span className="gradient-text"> built with intention.</span>
+              <h1
+                className="mt-6 font-display text-[clamp(3.8rem,8vw,7rem)] font-semibold leading-[0.88] text-white"
+              >
+                Build Your Future,
+                <br />
+                <span className="italic">Rooted in Faith.</span>
               </h1>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
-                Methna helps Muslims connect with clarity and intention through a
-                respectful, privacy-focused matchmaking experience designed for
-                people seeking something real.
+
+              <p
+                className="mt-6 max-w-2xl text-lg leading-relaxed text-white/82"
+              >
+                Methna is more than an app. It is the first step toward the family
+                life you have always envisioned, with calmer discovery, better
+                privacy, and a path that respects intention from the very start.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a
-                  className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-xl bg-accent px-5 text-sm font-semibold text-white transition hover:bg-accent-strong"
-                  href={clientEnv.appDownloadUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Download Methna
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button className="h-12 px-7" onClick={openPreferredPlan} size="lg">
+                  Start Your Journey
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Button>
                 <a
-                  className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-xl border border-border px-5 text-sm font-semibold text-foreground transition hover:border-accent/45 hover:bg-accent-soft/45"
-                  href="#premium"
+                  className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-full border border-white/20 bg-white/8 px-6 text-sm font-semibold text-white transition hover:bg-white/14"
+                  href="#community"
                 >
-                  <Stars className="h-4 w-4" />
-                  Explore Premium
+                  Explore the Platform
                 </a>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-2.5 text-sm text-muted">
-                {[
-                  "Built for marriage-minded users",
-                  "Privacy-first visibility controls",
-                  "Meaningful compatibility signals",
-                ].map((label) => (
-                  <span
-                    key={label}
-                    className="inline-flex items-center gap-1 rounded-full border border-border bg-white/80 px-3 py-1.5"
+              <div className="mt-10 grid gap-3 md:max-w-3xl md:grid-cols-3">
+                {heroFacts.map((fact) => (
+                  <div
+                    key={fact.label}
+                    className="rounded-[24px] border border-white/12 bg-white/8 px-4 py-4 backdrop-blur-sm"
                   >
-                    <Check className="h-3.5 w-3.5 text-accent-strong" />
-                    {label}
-                  </span>
+                    <p className="text-xs uppercase tracking-[0.18em] text-white/56">
+                      {fact.label}
+                    </p>
+                    <p className="mt-3 text-xl font-semibold text-white">
+                      {fact.value}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
-
-            <div className="relative grid gap-3">
-              <motion.article
-                className="glass-surface rounded-2xl p-5"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45 }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-                  More than a swipe
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/90">
-                  Structured discovery, respectful communication, and profile depth
-                  designed around serious intent.
-                </p>
-              </motion.article>
-
-              <motion.article
-                className="glass-surface rounded-2xl p-5"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: 0.08 }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-                  Privacy and trust
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/90">
-                  Verification, moderation, locked photo access, and stronger
-                  visibility controls built into core flows.
-                </p>
-              </motion.article>
-
-              <motion.article
-                className="glass-surface rounded-2xl p-5"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: 0.16 }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-                  Premium with purpose
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/90">
-                  See who liked you, boost your profile, use Ghost mode and Passport
-                  mode, and increase meaningful reach.
-                </p>
-              </motion.article>
-            </div>
           </div>
         </div>
       </section>
 
-      <div className="section-wrap pb-4 md:pb-6">
-        <div className="soft-divider" />
-      </div>
-
-      <section id="intent" className="section-wrap pt-6 pb-12 md:pb-16">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-            Built for intention
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            A serious matchmaking experience for Muslims
-          </h2>
-          <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-            Methna is designed for serious connections, privacy, and meaningful
-            compatibility, not casual noise.
-          </p>
-        </div>
-
-        <div className="mt-7 grid gap-4 md:grid-cols-3">
-          {intentionPillars.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.article
-                key={item.title}
-                className="premium-panel p-5"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.07 * index }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent-strong">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-3 text-xl font-semibold text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {item.description}
-                </p>
-              </motion.article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section id="why" className="section-wrap pb-12 md:pb-16">
-        <div className="premium-panel p-6 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-            Why Methna
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            More clarity. Less noise.
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-            Most dating products optimize for activity. Methna is built for
-            outcomes. From richer profile depth to safer interactions and premium
-            visibility tools, every part of the product is designed to help serious
-            people connect with intention.
-          </p>
-
-          <div className="mt-6 grid gap-3 md:grid-cols-3">
-            {[
-              "Structured profile depth beyond surface-level swiping",
-              "Stronger privacy and moderation foundations",
-              "Premium features that improve discovery quality",
-            ].map((point) => (
-              <div key={point} className="rounded-2xl border border-border bg-white/80 p-4">
-                <p className="text-sm leading-relaxed text-foreground/90">{point}</p>
-              </div>
-            ))}
+      <section id="community" className="section-wrap py-16 md:py-20">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div className="premium-panel p-5 md:p-6">
+            <img
+              alt="A parent's hand gently holding a baby's hand"
+              className="h-full min-h-[430px] w-full rounded-[28px] object-cover md:min-h-[520px]"
+              src={familyImage}
+            />
           </div>
-        </div>
-      </section>
 
-      <section id="features" className="section-wrap pb-12 md:pb-16">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-            Feature pillars
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Designed for serious progress
-          </h2>
-        </div>
+          <div className="px-1 md:px-4">
+            <Badge>Our Philosophy</Badge>
+            <h2 className="mt-5 font-display text-5xl font-semibold leading-[0.95] text-foreground md:text-6xl">
+              Designed for Marriage.
+              <br />
+              Built for Family.
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+              In a world of fleeting interactions, Methna prioritizes
+              intentionality. We believe a strong marriage begins with clearer
+              values, better pacing, and a community built around respect.
+            </p>
 
-        <div className="mt-7 grid gap-4 lg:grid-cols-2">
-          {featurePillars.map((pillar, index) => {
-            const Icon = pillar.icon;
-
-            return (
-              <motion.article
-                key={pillar.title}
-                className="premium-panel p-5 md:p-6"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.06 * index }}
-                viewport={{ once: true, amount: 0.25 }}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent-strong">
-                    <Icon className="h-5 w-5" />
+            <div className="mt-8 space-y-5">
+              {philosophyPoints.map((point) => (
+                <div key={point.title} className="flex gap-4">
+                  <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-white shadow-[0_16px_28px_-24px_rgba(42,25,20,0.25)]">
+                    <Check className="h-4 w-4 text-accent-strong" />
                   </span>
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground">
-                      {pillar.title}
+                    <h3 className="font-display text-2xl font-semibold text-foreground">
+                      {point.title}
                     </h3>
-                    <p className="text-sm text-muted">{pillar.subtitle}</p>
+                    <p className="mt-1.5 max-w-xl text-base leading-relaxed text-muted">
+                      {point.description}
+                    </p>
                   </div>
-                </div>
-
-                <ul className="mt-4 space-y-2.5 text-sm text-foreground/90">
-                  {pillar.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-strong" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section id="premium" className="section-wrap pb-10 md:pb-14">
-        <div className="premium-panel overflow-hidden p-6 md:p-8">
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
-              <Badge>Premium Value</Badge>
-              <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-                Premium that gives you real advantage
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
-                Premium gives you more visibility, more control, and more ways to
-                connect. See who liked you, unlock advanced discovery tools,
-                increase your reach, and stand out with exclusive profile
-                advantages.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    if (!headlinePlan) {
-                      return;
-                    }
-
-                    setSelectedPlan(headlinePlan);
-                    setModalOpen(true);
-                  }}
-                >
-                  <Sparkles className="h-4 w-4" />
-                  View premium plans
-                </Button>
-
-                <a
-                  className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-xl border border-border px-5 text-sm font-semibold text-foreground transition hover:border-accent/45 hover:bg-accent-soft/50"
-                  href="#premium-plans"
-                >
-                  <Stars className="h-4 w-4" />
-                  Compare plans
-                </a>
-              </div>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                "See who liked you",
-                "Boost profile",
-                "Ghost mode",
-                "Passport mode",
-                "Premium badge",
-                "More likes, boosts, compliments",
-              ].map((item) => (
-                <div key={item} className="glass-surface rounded-2xl p-4 text-sm font-medium text-foreground/90">
-                  {item}
                 </div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-7 grid gap-4 md:grid-cols-3">
-            {valueHighlights.map((item, index) => (
-              <motion.article
-                key={item.title}
-                className="rounded-2xl border border-border bg-white/82 p-4"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.08 * index }}
-                viewport={{ once: true, amount: 0.25 }}
+      <section id="process" className="section-wrap pb-16 md:pb-20">
+        <div className="overflow-hidden rounded-[40px] border border-border/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.68)_0%,rgba(248,242,235,0.92)_100%)] px-6 py-10 md:px-10 md:py-14">
+          <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+            <div>
+              <h2 className="font-display text-5xl font-semibold leading-[0.95] text-foreground md:text-6xl">
+                A Space for Serenity
+              </h2>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+                We have removed the noise of modern dating to provide a sanctuary
+                where you can truly get to know someone. No endless swiping, just
+                purposeful exploration that helps good conversations breathe.
+              </p>
+
+              <a
+                className="subtle-focus-ring mt-8 inline-flex h-12 items-center rounded-full border border-accent/35 bg-white px-6 text-sm font-semibold text-accent-strong transition hover:bg-accent-soft/55"
+                href="#premium-plans"
               >
-                <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent-strong">
-                  <Crown className="h-4 w-4" />
-                </div>
-                <h3 className="mt-3 text-lg font-semibold text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {item.description}
+                Explore the Platform
+              </a>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-[560px] pb-10">
+              <img
+                alt="A woman standing in a warm softly lit interior"
+                className="ml-auto h-[320px] w-[86%] rounded-[30px] object-cover shadow-[0_30px_60px_-42px_rgba(60,41,31,0.28)] md:h-[360px]"
+                src={serenityImage}
+              />
+              <div className="premium-panel absolute bottom-0 left-0 w-[76%] px-6 py-5">
+                <p className="font-display text-[1.65rem] italic leading-snug text-accent-strong">
+                  &quot;Your story begins with a single, meaningful connection.&quot;
                 </p>
-              </motion.article>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="premium-plans" className="section-wrap pb-10 md:pb-14">
+      <section className="section-wrap pb-16 md:pb-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge className="mx-auto">Trust &amp; Safety</Badge>
+          <h2 className="mt-5 font-display text-5xl font-semibold leading-[0.95] text-foreground md:text-6xl">
+            A Foundation of Trust
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted">
+            Safety and privacy are not just features; they are our commitments to
+            you at every stage of the journey.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {trustCards.map((card) => (
+            <TrustCard key={card.title} {...card} />
+          ))}
+        </div>
+      </section>
+
+      <section className="section-wrap pb-16 md:pb-20">
+        <div className="overflow-hidden rounded-[38px] border border-border bg-white shadow-[0_34px_82px_-54px_rgba(58,39,31,0.22)]">
+          <div className="grid lg:grid-cols-[0.42fr_0.58fr]">
+            <div className="bg-accent px-6 py-8 text-[var(--accent-ink)] md:px-8 md:py-10">
+              <Badge className="border-white/28 bg-white/10 text-white">
+                Premium Membership
+              </Badge>
+              <h2 className="mt-5 font-display text-4xl font-semibold md:text-5xl">
+                Premium Benefits
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-white/82 md:text-base">
+                Unlock smarter visibility, calmer discovery, and more control when
+                the right timing matters most.
+              </p>
+
+              <div className="mt-8 rounded-[28px] border border-white/18 bg-white/14 p-5">
+                <p className="text-xs uppercase tracking-[0.18em] text-white/64">
+                  Most chosen
+                </p>
+                <p className="mt-3 font-display text-3xl font-semibold text-white">
+                  {headlinePlan?.name ?? "Premium"}
+                </p>
+                <p className="mt-2 text-sm text-white/78">
+                  {headlinePrice
+                    ? `${headlinePrice}/${headlinePlan?.interval ?? "month"}`
+                    : "Live pricing from your subscription catalog"}
+                </p>
+              </div>
+            </div>
+
+            <div className="px-6 py-8 md:px-8 md:py-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
+                What opens up
+              </p>
+              <div className="mt-5 space-y-3">
+                {premiumHighlights.map((feature) => (
+                  <div
+                    key={feature}
+                    className="flex items-start gap-3 rounded-[24px] border border-border bg-[#fff9f2] px-4 py-3"
+                  >
+                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-strong">
+                      <Check className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-sm leading-relaxed text-foreground/86">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="soft-divider my-7" />
+
+              <p className="text-sm leading-relaxed text-muted md:text-base">
+                Use the exact email from your app account. We verify it first and
+                then open secure checkout, so the experience stays familiar while
+                your premium access activates cleanly on the same account.
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button onClick={openPreferredPlan} size="lg">
+                  Get Started
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+                <a
+                  className="subtle-focus-ring inline-flex h-12 items-center rounded-full border border-border bg-white px-6 text-sm font-semibold text-foreground transition hover:border-accent/45 hover:bg-accent-soft/45"
+                  href="/manage-subscription"
+                >
+                  Manage Subscription
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap pb-16 md:pb-20">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="relative mx-auto h-[500px] w-full max-w-[460px]">
+            <PhoneShell className="absolute bottom-4 left-0 rotate-[-8deg] bg-white">
+              <div className="relative h-[420px] bg-[#111319] text-white">
+                <img
+                  alt="Profile preview"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  src={profilePhoneImage}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18),rgba(0,0,0,0.05),rgba(0,0,0,0.82))]" />
+                <div className="absolute left-1/2 top-3 h-6 w-24 -translate-x-1/2 rounded-full bg-black/75" />
+                <div className="absolute inset-x-0 top-4 flex items-center justify-between px-5 text-[11px] font-semibold text-white/88">
+                  <span>9:41</span>
+                  <span>3 likes</span>
+                </div>
+                <div className="absolute bottom-6 left-5 right-5">
+                  <p className="text-4xl font-semibold text-white">Adnan, 26</p>
+                  <p className="mt-2 text-sm text-white/78">7 km away, Paris</p>
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/50 text-white">
+                      ×
+                    </span>
+                    <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-accent-strong shadow-[0_20px_45px_-30px_rgba(255,255,255,0.68)]">
+                      <Heart className="h-6 w-6 fill-accent-soft text-accent-strong" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </PhoneShell>
+
+            <PhoneShell className="absolute right-0 top-0 rotate-[6deg] bg-white">
+              <div className="relative h-[420px] overflow-hidden bg-[#ff4d84] px-5 py-6 text-white">
+                <div className="absolute left-1/2 top-3 h-6 w-24 -translate-x-1/2 rounded-full bg-[#d63a6a]" />
+                <div className="flex items-center justify-between text-[11px] font-semibold">
+                  <span>9:41</span>
+                  <span>Match</span>
+                </div>
+
+                <p className="mt-11 text-center text-[2rem] font-semibold leading-tight">
+                  Vous et Salma
+                  <br />
+                  êtes assortis !
+                </p>
+
+                <div className="relative mx-auto mt-8 h-[170px] w-[180px]">
+                  <PhonePortrait
+                    className="absolute left-1 top-4 -rotate-[12deg]"
+                    image={matchPhoneLeftImage}
+                  />
+                  <PhonePortrait
+                    className="absolute right-0 top-7 rotate-[10deg]"
+                    image={matchPhoneRightImage}
+                  />
+                </div>
+
+                <div className="mt-5 text-center">
+                  <p className="text-3xl font-semibold">
+                    Salma <span className="text-2xl text-white/78">24</span>
+                  </p>
+                  <p className="mt-2 text-[11px] uppercase tracking-[0.28em] text-white/78">
+                    7 km away, Montreuil
+                  </p>
+                </div>
+
+                <div className="mt-6 rounded-full bg-white px-4 py-3 text-center text-sm font-medium text-[#cf4a73]">
+                  Ask a thoughtful first question
+                </div>
+              </div>
+            </PhoneShell>
+          </div>
+
+          <div>
+            <Badge>App Experience</Badge>
+            <h2 className="mt-5 font-display text-5xl font-semibold leading-[0.94] text-foreground md:text-6xl">
+              The app that connects Muslim singles around the world.
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
+              From discovery to the match moment, every screen keeps the journey
+              hopeful, focused, and designed around meaningful connection instead
+              of noise.
+            </p>
+
+            <div className="mt-8 space-y-4">
+              {platformStats.map((stat) => (
+                <ShowcaseStat key={stat.label} {...stat} />
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                className="subtle-focus-ring inline-flex h-12 items-center rounded-full bg-accent px-6 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
+                href="/experience"
+              >
+                See the App Preview
+              </a>
+              <a
+                className="subtle-focus-ring inline-flex h-12 items-center rounded-full border border-border bg-white px-6 text-sm font-semibold text-foreground transition hover:border-accent/45 hover:bg-accent-soft/45"
+                href="#premium-plans"
+              >
+                View Plans
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="premium-plans" className="section-wrap pb-16 md:pb-20">
+        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <Badge>Choose Your Pace</Badge>
+            <h2 className="mt-4 font-display text-5xl font-semibold leading-[0.95] text-foreground md:text-6xl">
+              Pick the plan that matches your season.
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-muted">
+              Live plan details still come from your subscription catalog. The
+              design changed, but the pricing flow and checkout behavior remain the
+              same underneath.
+            </p>
+          </div>
+
+          <div className="rounded-full border border-accent/18 bg-accent-soft px-4 py-2 text-sm font-semibold text-accent-strong">
+            Live subscription details from your backend
+          </div>
+        </div>
+
         {source === "fallback" ? (
-          <div className="mb-5 rounded-xl border border-accent/35 bg-accent-soft/55 px-4 py-3 text-sm text-accent-strong">
-            Live plan endpoint is currently unavailable. Showing fallback plans
-            until backend sync is reachable.
+          <div className="mb-5 rounded-[24px] border border-accent/25 bg-accent-soft/70 px-4 py-3 text-sm text-accent-strong">
+            Plan details are refreshing. You can still choose a plan below.
           </div>
         ) : null}
 
         {loading ? <PlansSkeleton /> : null}
 
         {!loading && error ? (
-          <div className="rounded-xl border border-danger/30 bg-danger/5 px-4 py-3 text-sm text-danger">
+          <div className="rounded-[24px] border border-danger/28 bg-danger/6 px-4 py-3 text-sm text-danger">
             {error}
           </div>
         ) : null}
@@ -614,8 +594,8 @@ export function PremiumSubscriptionExperience({
               <PlanCard
                 index={index}
                 key={plan.code}
-                onSubscribe={(selected) => {
-                  setSelectedPlan(selected);
+                onSubscribe={(planToOpen) => {
+                  setSelectedPlan(planToOpen);
                   setModalOpen(true);
                 }}
                 plan={plan}
@@ -625,176 +605,144 @@ export function PremiumSubscriptionExperience({
         ) : null}
       </section>
 
-      <FeatureComparison plans={plans} />
+      {!loading && !error && plans.length > 1 ? (
+        <FeatureComparison plans={plans} />
+      ) : null}
 
-      <section id="comparison" className="section-wrap pb-12 pt-12 md:pb-16 md:pt-16">
-        <div className="premium-panel overflow-hidden p-6 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-            Comparison
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Built for serious connections, not casual noise
-          </h2>
+      <section id="support" className="section-wrap pb-20 md:pb-24">
+        <div className="surface-dark overflow-hidden px-6 py-8 md:px-8 md:py-10">
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <Badge className="border-white/16 bg-white/8 text-white">
+                Ready When You Are
+              </Badge>
+              <h2 className="mt-5 font-display text-4xl font-semibold leading-[0.97] text-white md:text-5xl">
+                Start on web, continue in the app, and get support whenever you
+                need it.
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
+                Checkout happens here, premium unlocks in the app, and our support
+                team stays reachable for account, privacy, billing, and safety
+                questions without changing the rest of your flow.
+              </p>
+            </div>
 
-          <div className="mt-6 overflow-x-auto rounded-2xl border border-border">
-            <table className="min-w-full border-collapse text-left text-sm">
-              <thead className="bg-accent-soft/55">
-                <tr>
-                  <th className="px-4 py-3 font-semibold text-foreground">Area</th>
-                  <th className="px-4 py-3 font-semibold text-muted">Ordinary casual apps</th>
-                  <th className="px-4 py-3 font-semibold text-foreground">Methna</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row, index) => (
-                  <tr key={row.metric} className={index % 2 === 0 ? "bg-white" : "bg-[#f8f5ff]"}>
-                    <td className="px-4 py-3 font-semibold text-foreground">{row.metric}</td>
-                    <td className="px-4 py-3 text-muted">{row.casual}</td>
-                    <td className="px-4 py-3 text-foreground">{row.methna}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="safety" className="section-wrap pb-12 md:pb-16">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-            Safety and privacy
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Privacy and trust are built in
-          </h2>
-          <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-            Privacy and trust are not optional. Methna gives users more control
-            over visibility, access, and interactions through verification,
-            moderation, and privacy-aware profile design.
-          </p>
-        </div>
-
-        <div className="mt-7 grid gap-4 md:grid-cols-3">
-          {safetyCards.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.article
-                key={item.title}
-                className="premium-panel p-5"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.07 * index }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent-strong">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-3 text-lg font-semibold text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{item.text}</p>
-              </motion.article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section id="about" className="section-wrap pb-12 md:pb-16">
-        <div className="premium-panel p-6 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-            About us
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Built to create a more respectful matchmaking experience
-          </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-            Methna was built to create a more respectful and intentional
-            matchmaking experience for Muslims. We believe serious relationships
-            deserve better tools, better privacy, and a better environment than
-            casual-first platforms.
-          </p>
-
-          <div className="mt-5 grid gap-3 md:grid-cols-2">
-            {[
-              "Serious intent from the beginning",
-              "Meaningful compatibility signals",
-              "Privacy and trust as product foundations",
-              "Premium features with practical value",
-            ].map((point) => (
-              <div key={point} className="rounded-2xl border border-border bg-white/82 p-4 text-sm text-foreground/90">
-                {point}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" className="section-wrap pb-12 md:pb-16">
-        <div className="premium-panel p-6 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
-            FAQ
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Helpful answers, clearly explained
-          </h2>
-
-          <div className="mt-6 space-y-3">
-            {faqItems.map((item) => (
-              <details key={item.question} className="rounded-2xl border border-border bg-white/85 p-4">
-                <summary className="cursor-pointer list-none text-base font-semibold text-foreground">
-                  {item.question}
-                </summary>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{item.answer}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="download" className="section-wrap pb-14 md:pb-18">
-        <div className="premium-panel relative overflow-hidden p-6 text-center md:p-9">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-accent-soft/80 to-transparent" />
-
-          <div className="relative">
-            <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
-              Ready for a more intentional way to connect?
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
-              Join a Muslim matchmaking experience built for serious connections,
-              stronger privacy, and meaningful compatibility.
-            </p>
-
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-wrap gap-3 lg:justify-end">
               <a
-                className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-xl bg-accent px-5 text-sm font-semibold text-white transition hover:bg-accent-strong"
+                className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
                 href={clientEnv.appDownloadUrl}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Download Methna
+                Download App
                 <ArrowRight className="h-4 w-4" />
               </a>
-
               <a
-                className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-xl border border-border px-5 text-sm font-semibold text-foreground transition hover:border-accent/45 hover:bg-accent-soft/45"
-                href="#premium-plans"
+                className="subtle-focus-ring inline-flex h-12 items-center rounded-full border border-white/18 bg-white/6 px-6 text-sm font-semibold text-white transition hover:bg-white/10"
+                href="/manage-subscription"
               >
-                View premium plans
+                Manage Subscription
+              </a>
+              <a
+                className="subtle-focus-ring inline-flex h-12 items-center rounded-full border border-white/18 bg-white/6 px-6 text-sm font-semibold text-white transition hover:bg-white/10"
+                href="/contact"
+              >
+                Contact Support
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <AnimatePresence>
-        <SubscribeModal
-          onClose={() => setModalOpen(false)}
-          open={modalOpen}
-          plan={selectedPlan}
-          prefilledEmail={prefilledEmail}
-        />
-      </AnimatePresence>
+      <SubscribeModal
+        onClose={() => setModalOpen(false)}
+        open={modalOpen}
+        plan={selectedPlan}
+        prefilledEmail={prefilledEmail}
+      />
     </>
+  );
+}
+
+function TrustCard({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}) {
+  return (
+    <article className="premium-panel px-6 py-7 md:px-7 md:py-8">
+      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#f7f1ea] text-accent-strong">
+        <Icon className="h-5 w-5" />
+      </span>
+      <h3 className="mt-5 font-display text-3xl font-semibold text-foreground">
+        {title}
+      </h3>
+      <p className="mt-3 text-base leading-relaxed text-muted">{description}</p>
+    </article>
+  );
+}
+
+function ShowcaseStat({
+  icon: Icon,
+  value,
+  label,
+}: {
+  icon: LucideIcon;
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="flex items-start gap-4 rounded-[28px] border border-border bg-white/86 px-5 py-4 shadow-[0_18px_38px_-30px_rgba(42,25,20,0.22)]">
+      <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-strong">
+        <Icon className="h-5 w-5" />
+      </span>
+      <div>
+        <p className="text-3xl font-semibold tracking-tight text-[#ff4d84]">{value}</p>
+        <p className="mt-1 text-base leading-relaxed text-muted">{label}</p>
+      </div>
+    </div>
+  );
+}
+
+function PhoneShell({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-[38px] border border-white/80 p-3 shadow-[0_40px_90px_-46px_rgba(42,25,20,0.38)]",
+        className,
+      )}
+    >
+      <div className="overflow-hidden rounded-[30px]">{children}</div>
+    </div>
+  );
+}
+
+function PhonePortrait({
+  className,
+  image,
+}: {
+  className?: string;
+  image: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "h-[120px] w-[82px] overflow-hidden rounded-[22px] border border-white/20 shadow-[0_20px_40px_-30px_rgba(0,0,0,0.45)]",
+        className,
+      )}
+    >
+      <img alt="Profile portrait" className="h-full w-full object-cover" src={image} />
+    </div>
   );
 }
 
@@ -803,11 +751,12 @@ function PlansSkeleton() {
     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       {[0, 1, 2].map((item) => (
         <div
-          className="premium-panel h-[420px] animate-pulse border-border/60 bg-white/72"
+          className="premium-panel flex h-[420px] items-center justify-center bg-white/72"
           key={`skeleton-${item}`}
         >
-          <div className="flex h-full items-center justify-center text-muted">
+          <div className="flex items-center gap-2 text-muted">
             <Loader2 className="h-5 w-5 animate-spin" />
+            <span className="text-sm">Loading plans...</span>
           </div>
         </div>
       ))}

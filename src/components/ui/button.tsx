@@ -7,19 +7,19 @@ type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-accent text-white hover:bg-accent-strong shadow-[0_16px_35px_-22px_rgba(139,98,39,0.72)]",
+    "bg-accent text-[var(--accent-ink)] hover:bg-accent-strong shadow-[0_22px_42px_-26px_rgba(168,95,75,0.55)]",
   secondary:
-    "bg-foreground text-background hover:opacity-90 shadow-[0_14px_28px_-20px_rgba(10,10,10,0.55)]",
+    "bg-accent-soft text-accent-strong hover:bg-[#ebd5c8] shadow-[0_18px_34px_-28px_rgba(168,95,75,0.38)]",
   outline:
-    "bg-transparent text-foreground border border-border hover:border-accent/60 hover:bg-accent-soft/45",
-  ghost: "bg-transparent text-foreground hover:bg-accent-soft/40",
+    "border border-border bg-white/78 text-foreground hover:border-accent/55 hover:bg-accent-soft/55",
+  ghost: "bg-transparent text-foreground hover:bg-white/70",
   danger: "bg-danger text-white hover:opacity-90",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: "h-9 px-4 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-12 px-6 text-base",
+  sm: "h-10 px-4 text-sm",
+  md: "h-11 px-6 text-sm",
+  lg: "h-12 px-7 text-base",
 };
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -40,7 +40,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "subtle-focus-ring inline-flex shrink-0 items-center justify-center gap-2 rounded-xl font-semibold tracking-tight transition duration-200 disabled:cursor-not-allowed disabled:opacity-70",
+        "subtle-focus-ring inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-semibold tracking-tight transition duration-200 disabled:cursor-not-allowed disabled:opacity-70",
         variantClasses[variant],
         sizeClasses[size],
         className,
