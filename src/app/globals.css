@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-sora: 'Sora', sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --color-primary: #8d5a70;
+  --color-primary-dark: #74495d;
+  --color-primary-light: #f7ece8;
+  --color-accent: #b6786a;
+  --color-accent-light: #f9efeb;
+}
+
+body {
+  font-family: var(--font-dm-sans);
+  color: #24180f;
+  background:
+    radial-gradient(circle at top, rgba(214, 193, 181, 0.22), transparent 28%),
+    radial-gradient(circle at 84% 14%, rgba(231, 212, 204, 0.28), transparent 18%),
+    linear-gradient(180deg, #faf7f2 0%, #fffdf9 46%, #f7f2ed 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.prose h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+.prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.prose p { margin-bottom: 1rem; line-height: 1.75; }
+.prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose li { margin-bottom: 0.25rem; line-height: 1.75; }
+.prose strong { font-weight: 700; }
+.prose a { color: var(--color-primary); text-decoration: underline; }
