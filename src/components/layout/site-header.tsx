@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Crown } from "lucide-react";
-import { appRoutes } from "@/lib/config/env";
+import { appRoutes, clientEnv } from "@/lib/config/env";
 import { cn } from "@/lib/utils/cn";
 
 const primaryNav = [
@@ -66,17 +66,19 @@ export function SiteHeader() {
 
             <div className="flex items-center gap-2 self-start xl:self-auto">
               <Link
-                href={appRoutes.manageSubscription}
+                href={appRoutes.contact}
                 className="rounded-full px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
               >
-                Manage
+                Contact
               </Link>
-              <Link
-                href={`${appRoutes.premium}#premium-plans`}
+              <a
+                href={clientEnv.appDownloadUrl}
+                rel="noopener noreferrer"
+                target="_blank"
                 className="subtle-focus-ring inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
               >
-                Get Started
-              </Link>
+                Download App
+              </a>
             </div>
           </div>
 

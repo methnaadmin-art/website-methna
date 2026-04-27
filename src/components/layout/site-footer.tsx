@@ -38,8 +38,8 @@ export function SiteFooter() {
                   <Link className="hover:text-foreground" href={`${appRoutes.premium}#process`}>
                     The Process
                   </Link>
-                  <Link className="hover:text-foreground" href={`${appRoutes.premium}#premium-plans`}>
-                    Plans
+                  <Link className="hover:text-foreground" href={`${appRoutes.premium}#support`}>
+                    Support
                   </Link>
                 </div>
               </div>
@@ -72,14 +72,17 @@ export function SiteFooter() {
                   <Link className="hover:text-foreground" href={appRoutes.contact}>
                     Contact
                   </Link>
-                  <Link className="hover:text-foreground" href={appRoutes.manageSubscription}>
-                    Manage Subscription
-                  </Link>
                   <Link className="hover:text-foreground" href={appRoutes.terms}>
                     Terms
                   </Link>
                   <Link className="hover:text-foreground" href={appRoutes.privacy}>
                     Privacy
+                  </Link>
+                  <Link className="hover:text-foreground" href={appRoutes.deleteAccount}>
+                    Delete Account
+                  </Link>
+                  <Link className="hover:text-foreground" href={appRoutes.safety}>
+                    Child Safety
                   </Link>
                   <a className="hover:text-foreground" href={`mailto:${clientEnv.supportEmail}`}>
                     {clientEnv.supportEmail}

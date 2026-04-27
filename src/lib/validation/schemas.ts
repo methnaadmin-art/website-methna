@@ -5,20 +5,6 @@ export const emailSchema = z
   .trim()
   .email("Please enter a valid email address.");
 
-export const emailCheckSchema = z.object({
-  email: emailSchema,
-});
-
-export const checkoutSchema = z.object({
-  email: emailSchema,
-  planCode: z
-    .string()
-    .trim()
-    .min(1, "A subscription plan code is required."),
-  successUrl: z.string().url().optional(),
-  cancelUrl: z.string().url().optional(),
-});
-
 export const contactTicketSchema = z.object({
   name: z
     .string()

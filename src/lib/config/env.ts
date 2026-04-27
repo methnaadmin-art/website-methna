@@ -17,32 +17,24 @@ const siteUrl = stripTrailingSlashes(
 export const serverEnv = {
   backendBaseUrl,
   siteUrl,
-  stripeManagementUrl:
-    trim(process.env.STRIPE_MANAGEMENT_URL ?? "https://billing.stripe.com/p/login"),
-  stripeSuccessUrl: trim(process.env.STRIPE_SUCCESS_URL ?? `${siteUrl}/success`),
-  stripeCancelUrl: trim(process.env.STRIPE_CANCEL_URL ?? `${siteUrl}/cancel`),
-  stripePublishableKey:
-    trim(process.env.STRIPE_PUBLISHABLE_KEY ??
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ??
-    ""),
 };
 
 export const clientEnv = {
   appDownloadUrl:
     trim(process.env.NEXT_PUBLIC_APP_DOWNLOAD_URL ??
     "https://play.google.com/store/apps/details?id=com.methnapp.app"),
-  supportEmail: trim(process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@methna.app"),
-  stripePublishableKey: trim(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""),
+  supportEmail: trim(process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@methna.com"),
 };
 
 export const appRoutes = {
   premium: "/premium",
-  manageSubscription: "/manage-subscription",
+  experience: "/experience",
+  features: "/features",
   about: "/about",
   terms: "/terms",
   privacy: "/privacy",
   contact: "/contact",
   faq: "/faq",
-  success: "/success",
-  cancel: "/cancel",
+  deleteAccount: "/delete-account",
+  safety: "/safety",
 } as const;

@@ -83,8 +83,8 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
             We are here to help
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:text-base">
-            Reach out for account, subscription, privacy, or safety support. We
-            review requests carefully and respond with clear next steps.
+            Reach out for account, privacy, or safety support. We review every
+            request carefully and respond with clear next steps.
           </p>
 
           <form className="mt-7 space-y-4" onSubmit={onSubmit}>
@@ -105,7 +105,7 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
             </Field>
             <Field label="Subject" error={form.formState.errors.subject?.message}>
               <Input
-                placeholder="Billing, activation, refund, etc."
+                placeholder="Account access, privacy, safety, etc."
                 {...form.register("subject")}
               />
             </Field>
@@ -151,7 +151,7 @@ export function ContactForm({ prefilledEmail }: { prefilledEmail?: string }) {
             <li>2. The support team reviews and prioritizes your request.</li>
             <li>3. You receive a reply with clear action steps.</li>
             <li>
-              4. For billing issues, add your app account email to speed up verification.
+              4. For account issues, add your app account email to speed up verification.
             </li>
           </ul>
 
