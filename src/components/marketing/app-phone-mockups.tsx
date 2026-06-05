@@ -113,6 +113,8 @@ interface ShowcaseScreen {
   detail: string;
   mockupClassName?: string;
   content: ReactNode;
+  rawAssetSrc?: string;
+  rawAssetAlt?: string;
 }
 
 export function AppPhoneMockups({
@@ -125,8 +127,10 @@ export function AppPhoneMockups({
       label: "HomeScreen",
       detail:
         "Discovery card, top chrome, swipe hint, and the four-action dock taken from the live home screen.",
-      mockupClassName: "md:-rotate-[4deg] md:translate-y-3",
+      mockupClassName: "md:-rotate-[3deg] md:translate-y-2",
       content: <HomePreview />,
+      rawAssetSrc: "/mockups/home-muslim-man.png",
+      rawAssetAlt: "Methna home screen mockup with a Muslim man reading Quran",
     },
     {
       id: "users",
@@ -167,15 +171,27 @@ export function AppPhoneMockups({
           >
             <div className="relative">
               <div className="absolute inset-6 rounded-[44px] bg-[radial-gradient(circle_at_center,rgba(108,59,255,0.24),rgba(108,59,255,0))] blur-3xl" />
-              <IPhone17ProMockup
-                className={cn(
-                  "transition-transform duration-500 md:hover:rotate-0 md:hover:translate-y-0",
-                  screen.mockupClassName,
-                )}
-                compact={compact}
-              >
-                {screen.content}
-              </IPhone17ProMockup>
+              {screen.rawAssetSrc ? (
+                <img
+                  alt={screen.rawAssetAlt ?? screen.label}
+                  className={cn(
+                    "relative mx-auto w-[306px] transition-transform duration-500 md:hover:rotate-0 md:hover:translate-y-0",
+                    compact && "md:w-[280px]",
+                    screen.mockupClassName,
+                  )}
+                  src={screen.rawAssetSrc}
+                />
+              ) : (
+                <IPhone17ProMockup
+                  className={cn(
+                    "transition-transform duration-500 md:hover:rotate-0 md:hover:translate-y-0",
+                    screen.mockupClassName,
+                  )}
+                  compact={compact}
+                >
+                  {screen.content}
+                </IPhone17ProMockup>
+              )}
             </div>
             <div className="mt-5 max-w-[24rem] text-center">
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent-strong/70">
