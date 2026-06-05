@@ -21,7 +21,7 @@ export function SiteBrand({
           "h-11 w-11 rounded-2xl shadow-[0_18px_40px_-26px_rgba(95,49,244,0.5)]",
           compact && "h-10 w-10",
         )}
-        src="/methna-app-icon.jpg"
+        src="/methna_app_icon.jpg"
       />
       <span
         className={cn(

@@ -283,7 +283,7 @@ export function PremiumSubscriptionExperience() {
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center rounded-full border border-white/44 bg-white/16 px-6 text-sm font-semibold text-white shadow-[0_12px_28px_-24px_rgba(255,255,255,0.58)] transition hover:bg-white/22 sm:w-auto"
+                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center rounded-full border border-white/44 bg-white/16 px-6 text-sm font-semibold !text-white shadow-[0_12px_28px_-24px_rgba(255,255,255,0.58)] transition hover:bg-white/22 hover:!text-white sm:w-auto"
                 href="/contact"
               >
                 Contact Support

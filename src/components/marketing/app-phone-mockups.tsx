@@ -112,6 +112,7 @@ interface ShowcaseScreen {
   label: string;
   detail: string;
   mockupClassName?: string;
+  rawAssetClassName?: string;
   content: ReactNode;
   rawAssetSrc?: string;
   rawAssetAlt?: string;
@@ -128,6 +129,7 @@ export function AppPhoneMockups({
       detail:
         "Discovery card, top chrome, swipe hint, and the four-action dock taken from the live home screen.",
       mockupClassName: "md:-rotate-[3deg] md:translate-y-2",
+      rawAssetClassName: "w-[336px] md:w-[368px]",
       content: <HomePreview />,
       rawAssetSrc: "/mockups/home-muslim-man.png",
       rawAssetAlt: "Methna home screen mockup with a Muslim man reading Quran",
@@ -175,8 +177,9 @@ export function AppPhoneMockups({
                 <img
                   alt={screen.rawAssetAlt ?? screen.label}
                   className={cn(
-                    "relative mx-auto w-[306px] transition-transform duration-500 md:hover:rotate-0 md:hover:translate-y-0",
+                    "relative mx-auto w-[306px] max-w-[92vw] transition-transform duration-500 md:hover:rotate-0 md:hover:translate-y-0",
                     compact && "md:w-[280px]",
+                    screen.rawAssetClassName,
                     screen.mockupClassName,
                   )}
                   src={screen.rawAssetSrc}
