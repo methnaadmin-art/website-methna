@@ -20,11 +20,12 @@ const secondaryNav = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const mobileNav = [...primaryNav, ...secondaryNav];
 
   return (
-    <header className="relative z-40 px-4 pt-4 md:pt-5">
+    <header className="relative z-40 px-3 pt-3 sm:px-4 sm:pt-4 md:pt-5">
       <div className="section-wrap">
-        <div className="rounded-[26px] border border-border/85 bg-[rgba(255,252,247,0.94)] px-4 py-4 shadow-[0_24px_60px_-40px_rgba(60,41,31,0.28)] backdrop-blur-xl sm:px-5">
+        <div className="rounded-[24px] border border-border/85 bg-[rgba(255,252,247,0.96)] px-4 py-3.5 shadow-[0_24px_60px_-40px_rgba(60,41,31,0.28)] backdrop-blur-xl sm:rounded-[26px] sm:px-5 sm:py-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center justify-between gap-3 sm:gap-4">
               <SiteBrand />
@@ -57,10 +58,10 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center xl:self-auto">
+            <div className="grid w-full grid-cols-2 gap-2 sm:w-auto sm:grid-cols-2 xl:flex xl:items-center xl:self-auto">
               <Link
                 href={appRoutes.contact}
-                className="inline-flex h-11 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
+                className="inline-flex h-11 items-center justify-center rounded-full border border-border/85 bg-white/82 px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
               >
                 Contact
               </Link>
@@ -73,13 +74,13 @@ export function SiteHeader() {
             </div>
           </div>
 
-          <div className="mt-2 flex gap-2 overflow-x-auto pb-1 xl:hidden">
-            {[...primaryNav, ...secondaryNav].map((item) => (
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:hidden">
+            {mobileNav.map((item) => (
               <Link
                 key={`mobile-${item.href}`}
                 href={item.href}
                 className={cn(
-                  "shrink-0 rounded-full border border-transparent bg-white/72 px-3 py-1.5 text-xs font-semibold text-muted transition hover:border-border hover:text-foreground",
+                  "inline-flex min-h-10 items-center justify-center rounded-full border border-border/70 bg-white/72 px-3 py-2 text-center text-xs font-semibold text-muted transition hover:border-border hover:text-foreground",
                   pathname === item.href && "border-border text-foreground",
                 )}
               >

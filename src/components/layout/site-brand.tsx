@@ -18,14 +18,14 @@ export function SiteBrand({
       <img
         alt="Methna logo"
         className={cn(
-          "h-11 w-11 rounded-2xl shadow-[0_18px_40px_-26px_rgba(95,49,244,0.5)]",
+          "h-10 w-10 rounded-2xl shadow-[0_18px_40px_-26px_rgba(95,49,244,0.5)] sm:h-11 sm:w-11",
           compact && "h-10 w-10",
         )}
         src="/methna_app_icon.jpg"
       />
       <span
         className={cn(
-          "font-display text-[2rem] font-semibold tracking-tight text-foreground",
+          "font-display text-[1.85rem] font-semibold tracking-tight text-foreground sm:text-[2rem]",
           compact && "text-[1.7rem]",
         )}
       >
