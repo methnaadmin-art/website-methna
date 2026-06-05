@@ -42,7 +42,7 @@ const cast = {
     location: "DZ Algiers, Algeria",
     nationality: "Algeria",
     photo:
-      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/9150986/pexels-photo-9150986.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   omar: {
     name: "Omar",
@@ -50,8 +50,7 @@ const cast = {
     location: "MA Casablanca, Morocco",
     faith: "Practicing Muslim / Sunni",
     interests: "Reading / Travel / Football",
-    photo:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
+    photo: "/mockups/home-muslim-man.png",
   },
   amina: {
     name: "Amina",
@@ -59,15 +58,14 @@ const cast = {
     job: "Architect",
     line: "Oran, Algeria / 2 h ago",
     photo:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/9150986/pexels-photo-9150986.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   youssef: {
     name: "Youssef",
     age: 31,
     job: "Engineer",
     line: "Rabat, Morocco / 1 h ago",
-    photo:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80",
+    photo: "/mockups/home-muslim-man.png",
   },
   leila: {
     name: "Leila",
@@ -75,7 +73,7 @@ const cast = {
     job: "Pharmacist",
     line: "Doha, Qatar / 5 h ago",
     photo:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/9150986/pexels-photo-9150986.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   noor: {
     name: "Noor",
@@ -83,7 +81,7 @@ const cast = {
     job: "Dentist",
     line: "Dubai, UAE / 1 d ago",
     photo:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/9150986/pexels-photo-9150986.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   mariam: {
     name: "Mariam",
@@ -92,7 +90,7 @@ const cast = {
     unread: 2,
     premium: true,
     photo:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/9150986/pexels-photo-9150986.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   samir: {
     name: "Samir",
@@ -100,8 +98,7 @@ const cast = {
     time: "09:18",
     unread: 0,
     premium: false,
-    photo:
-      "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80",
+    photo: "/mockups/home-muslim-man.png",
   },
 } as const;
 
@@ -127,7 +124,7 @@ export function AppPhoneMockups({
       id: "home",
       label: "HomeScreen",
       detail:
-        "Discovery card, top chrome, swipe hint, and the four-action dock taken from the Flutter Home screen.",
+        "Discovery card, top chrome, swipe hint, and the four-action dock taken from the live home screen.",
       mockupClassName: "md:-rotate-[4deg] md:translate-y-3",
       content: <HomePreview />,
     },
@@ -202,7 +199,7 @@ export function AppPhoneMockups({
                   Core App Flow
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
-                  The website now shows the same four light-mode surfaces users actually
+                  The website now shows the same four app surfaces users actually
                   move through inside Methna.
                 </p>
               </div>
@@ -348,24 +345,24 @@ function UsersPreview() {
         <section className="rounded-[22px] border border-[#E2D5FF] bg-[linear-gradient(135deg,#FFFFFF,#F2EBFF)] p-[14px] shadow-[0_16px_32px_-24px_rgba(108,59,255,0.3)]">
           <div className="flex items-center gap-[11px]">
             <div className="flex h-10 w-10 items-center justify-center rounded-[14px] bg-[rgba(108,59,255,0.16)]">
-              <Heart className="h-[19px] w-[19px] text-[#6C3BFF]" />
+              <HeartHandshake className="h-[19px] w-[19px] text-[#6C3BFF]" />
             </div>
             <div className="flex-1">
               <p className="text-[12px] font-semibold text-[#6A6780]">Profiles</p>
-              <p className="text-[15px] font-semibold text-[#1A1626]">Liked Me</p>
+              <p className="text-[15px] font-semibold text-[#1A1626]">Matches</p>
             </div>
             <div className="rounded-full bg-[rgba(108,59,255,0.16)] px-3 py-1.5 text-[12px] font-bold text-[#6C3BFF]">
-              12
+              7
             </div>
           </div>
         </section>
 
         <div className="mt-3 flex gap-2 overflow-hidden">
           {[
-            { label: "Liked By Me", active: false, icon: Heart },
-            { label: "Liked Me", active: true, icon: BadgeCheck },
+            { label: "Matches", active: true, icon: HeartHandshake },
+            { label: "Liked Me", active: false, icon: Heart },
             { label: "Passed", active: false, icon: X },
-            { label: "Matches", active: false, icon: Sparkles },
+            { label: "Liked By Me", active: false, icon: BadgeCheck },
           ].map((tab) => {
             const Icon = tab.icon;
 

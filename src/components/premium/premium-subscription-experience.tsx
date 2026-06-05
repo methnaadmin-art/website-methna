@@ -21,6 +21,7 @@ const philosophyPoints = [
     title: "Wali Integration",
     description:
       "Optional family involvement helps the journey stay transparent, respectful, and serious from the start.",
+    comingSoon: true,
   },
   {
     title: "Sustainable Growth",
@@ -51,11 +52,11 @@ const trustCards = [
 ];
 
 const heroImage =
-  "https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?auto=format&fit=crop&w=1800&q=80";
+  "https://images.pexels.com/photos/12564739/pexels-photo-12564739.jpeg?auto=compress&cs=tinysrgb&w=1800";
 const familyImage =
-  "https://images.pexels.com/photos/4657988/pexels-photo-4657988.jpeg?cs=srgb&dl=pexels-lombejr-4657988.jpg&fm=jpg";
+  "https://images.pexels.com/photos/8911845/pexels-photo-8911845.jpeg?auto=compress&cs=tinysrgb&w=1600";
 const serenityImage =
-  "https://images.pexels.com/photos/32399750/pexels-photo-32399750.jpeg?cs=srgb&dl=pexels-through-noyan-s-lens-2151445904-32399750.jpg&fm=jpg";
+  "https://images.pexels.com/photos/9150986/pexels-photo-9150986.jpeg?auto=compress&cs=tinysrgb&w=1400";
 
 export function PremiumSubscriptionExperience() {
   return (
@@ -92,8 +93,6 @@ export function PremiumSubscriptionExperience() {
                 <a
                   className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-full bg-accent px-7 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
                   href={clientEnv.appDownloadUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
                 >
                   Download the App
                   <ArrowRight className="h-4 w-4" />
@@ -105,19 +104,6 @@ export function PremiumSubscriptionExperience() {
                   Explore the Platform
                 </a>
               </div>
-
-              <div className="mt-10 grid gap-4 text-sm text-white/82 md:max-w-3xl md:grid-cols-3 md:text-base">
-                <p className="leading-relaxed">
-                  <span className="font-semibold text-white">600k+</span> success stories
-                </p>
-                <p className="leading-relaxed">
-                  <span className="font-semibold text-white">15M</span> members worldwide
-                </p>
-                <p className="leading-relaxed">
-                  <span className="font-semibold text-white">Marriage-first</span> focused
-                  discovery
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -127,7 +113,7 @@ export function PremiumSubscriptionExperience() {
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="premium-panel p-5 md:p-6">
             <img
-              alt="A parent's hand gently holding a baby's hand"
+              alt="A Muslim couple holding hands outdoors"
               className="h-full min-h-[430px] w-full rounded-[28px] object-cover md:min-h-[520px]"
               src={familyImage}
             />
@@ -155,8 +141,13 @@ export function PremiumSubscriptionExperience() {
                     <Check className="h-4 w-4 text-accent-strong" />
                   </span>
                   <div>
-                    <h3 className="font-display text-2xl font-semibold text-foreground">
+                    <h3 className="flex flex-wrap items-center gap-2 font-display text-2xl font-semibold text-foreground">
                       {point.title}
+                      {point.comingSoon ? (
+                        <span className="rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-strong">
+                          Coming Soon
+                        </span>
+                      ) : null}
                     </h3>
                     <p className="mt-1.5 max-w-xl text-base leading-relaxed text-muted">
                       {point.description}
@@ -195,7 +186,7 @@ export function PremiumSubscriptionExperience() {
 
             <div className="relative mx-auto w-full max-w-[560px] pb-10">
               <img
-                alt="A woman standing in a warm softly lit interior"
+                alt="A woman in hijab standing in a softly lit interior"
                 className="ml-auto h-[320px] w-[86%] rounded-[30px] object-cover shadow-[0_30px_60px_-42px_rgba(64,37,151,0.24)] md:h-[360px]"
                 src={serenityImage}
               />
@@ -268,12 +259,12 @@ export function PremiumSubscriptionExperience() {
 
       <section id="support" className="section-wrap pb-20 md:pb-24">
         <div className="surface-dark overflow-hidden px-6 py-8 md:px-8 md:py-10">
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1.2fr)_auto] xl:items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/62">
                 Ready When You Are
               </p>
-              <h2 className="mt-5 font-display text-4xl font-semibold leading-[0.97] text-white md:text-5xl">
+              <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.35rem,6vw,3.7rem)] font-semibold leading-[1.02] text-white">
                 Download the app and get support whenever you need it.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
@@ -283,18 +274,16 @@ export function PremiumSubscriptionExperience() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3 lg:justify-end">
+            <div className="flex flex-col gap-3 sm:flex-row xl:justify-end">
               <a
-                className="subtle-focus-ring inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
+                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-white shadow-[0_16px_34px_-18px_rgba(108,59,255,0.62)] transition hover:bg-accent-strong sm:w-auto"
                 href={clientEnv.appDownloadUrl}
-                rel="noopener noreferrer"
-                target="_blank"
               >
                 Download App
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                className="subtle-focus-ring inline-flex h-12 items-center rounded-full border border-white/18 bg-white/6 px-6 text-sm font-semibold text-white transition hover:bg-white/10"
+                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center rounded-full border border-white/44 bg-white/16 px-6 text-sm font-semibold text-white shadow-[0_12px_28px_-24px_rgba(255,255,255,0.58)] transition hover:bg-white/22 sm:w-auto"
                 href="/contact"
               >
                 Contact Support
