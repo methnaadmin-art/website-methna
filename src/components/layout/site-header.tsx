@@ -22,11 +22,11 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-4 z-40 px-4">
+    <header className="relative z-40 px-4 pt-4 md:pt-5">
       <div className="section-wrap">
-        <div className="rounded-[30px] border border-border/85 bg-[rgba(255,252,247,0.94)] px-5 py-4 shadow-[0_24px_60px_-40px_rgba(60,41,31,0.28)] backdrop-blur-xl">
+        <div className="rounded-[26px] border border-border/85 bg-[rgba(255,252,247,0.94)] px-4 py-4 shadow-[0_24px_60px_-40px_rgba(60,41,31,0.28)] backdrop-blur-xl sm:px-5">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-3 sm:gap-4">
               <SiteBrand />
 
               <div className="hidden items-center gap-2 lg:flex">
@@ -57,23 +57,23 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            <div className="flex items-center gap-2 self-start xl:self-auto">
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center xl:self-auto">
               <Link
                 href={appRoutes.contact}
-                className="rounded-full px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
+                className="inline-flex h-11 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
               >
                 Contact
               </Link>
               <a
                 href={clientEnv.appDownloadUrl}
-                className="subtle-focus-ring inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
+                className="subtle-focus-ring inline-flex h-11 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
               >
                 Download App
               </a>
             </div>
           </div>
 
-          <div className="mt-3 flex gap-2 overflow-x-auto xl:hidden">
+          <div className="mt-2 flex gap-2 overflow-x-auto pb-1 xl:hidden">
             {[...primaryNav, ...secondaryNav].map((item) => (
               <Link
                 key={`mobile-${item.href}`}

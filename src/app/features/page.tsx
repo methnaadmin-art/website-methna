@@ -75,11 +75,11 @@ export default function FeaturesPage() {
   return (
     <>
       <section className="section-wrap pt-12 pb-10 md:pt-16 md:pb-14">
-        <div className="premium-panel p-6 md:p-8">
+        <div className="premium-panel p-5 md:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
             Product pillars
           </p>
-          <h1 className="mt-2 font-display text-5xl font-semibold tracking-tight md:text-6xl">
+          <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight md:text-6xl">
             Built for serious progress, not casual noise
           </h1>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
@@ -116,11 +116,11 @@ export default function FeaturesPage() {
 
       <section className="section-wrap pb-12 md:pb-16">
         <div className="premium-panel overflow-hidden">
-          <div className="border-b border-border/70 px-5 py-6 md:px-8">
+          <div className="border-b border-border/70 px-4 py-5 md:px-8 md:py-6">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
               Comparison
             </p>
-            <h2 className="mt-2 font-display text-4xl font-semibold tracking-tight">
+            <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight md:text-4xl">
               What feels different in practice
             </h2>
           </div>
@@ -128,9 +128,9 @@ export default function FeaturesPage() {
             <table className="min-w-full border-collapse text-left text-sm">
               <thead className="bg-accent-soft/45">
                 <tr>
-                  <th className="px-5 py-4 font-semibold md:px-8">Area</th>
-                  <th className="px-5 py-4 font-semibold text-muted md:px-8">Ordinary apps</th>
-                  <th className="px-5 py-4 font-semibold text-foreground md:px-8">Methna</th>
+                  <th className="px-4 py-4 font-semibold md:px-8">Area</th>
+                  <th className="px-4 py-4 font-semibold text-muted md:px-8">Ordinary apps</th>
+                  <th className="px-4 py-4 font-semibold text-foreground md:px-8">Methna</th>
                 </tr>
               </thead>
               <tbody>
@@ -139,9 +139,9 @@ export default function FeaturesPage() {
                     className={index % 2 === 0 ? "bg-white/75" : "bg-[#f6f8fb]"}
                     key={row.area}
                   >
-                    <td className="px-5 py-3.5 font-semibold text-foreground md:px-8">{row.area}</td>
-                    <td className="px-5 py-3.5 text-muted md:px-8">{row.ordinary}</td>
-                    <td className="px-5 py-3.5 text-foreground md:px-8">{row.methna}</td>
+                    <td className="px-4 py-3.5 font-semibold text-foreground md:px-8">{row.area}</td>
+                    <td className="px-4 py-3.5 text-muted md:px-8">{row.ordinary}</td>
+                    <td className="px-4 py-3.5 text-foreground md:px-8">{row.methna}</td>
                   </tr>
                 ))}
               </tbody>
@@ -151,12 +151,12 @@ export default function FeaturesPage() {
       </section>
 
       <section className="section-wrap pb-12 md:pb-16">
-        <div className="premium-panel p-6 md:p-8">
+        <div className="premium-panel p-5 md:p-8">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
               App preview
             </p>
-            <h2 className="mt-2 font-display text-4xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight md:text-5xl">
               The product is visible here, not hidden behind vague claims
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">
@@ -171,10 +171,10 @@ export default function FeaturesPage() {
       </section>
 
       <section className="section-wrap pb-14 md:pb-20">
-        <div className="surface-dark border-border/70 p-6 text-white md:p-8">
+        <div className="surface-dark border-border/70 p-5 text-white md:p-8">
           <div className="grid gap-5 md:grid-cols-[1.2fr_0.8fr] md:items-center">
             <div>
-              <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
+              <h2 className="font-display text-3xl font-semibold tracking-tight md:text-5xl">
                 Ready to start your journey?
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-white/75 md:text-base">
