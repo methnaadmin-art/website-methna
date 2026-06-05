@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check, Lock, MessageCircle, Shield, Users } from "lucide-react";
+import { AppPhoneMockups } from "@/components/marketing/app-phone-mockups";
 
 export const metadata: Metadata = {
   title: "Features",
@@ -149,8 +150,28 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      <section className="section-wrap pb-12 md:pb-16">
+        <div className="premium-panel p-6 md:p-8">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-strong">
+              App preview
+            </p>
+            <h2 className="mt-2 font-display text-4xl font-semibold tracking-tight md:text-5xl">
+              The product is visible here, not hidden behind vague claims
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">
+              Visitors can see the real home, users, chats, and profile surfaces
+              before they download the app.
+            </p>
+          </div>
+          <div className="mt-8">
+            <AppPhoneMockups compact />
+          </div>
+        </div>
+      </section>
+
       <section className="section-wrap pb-14 md:pb-20">
-        <div className="premium-panel border-border/70 bg-gradient-to-br from-[#2a1a6d] via-[#3a2492] to-[#4c20cf] p-6 text-white md:p-8">
+        <div className="surface-dark border-border/70 p-6 text-white md:p-8">
           <div className="grid gap-5 md:grid-cols-[1.2fr_0.8fr] md:items-center">
             <div>
               <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
@@ -163,14 +184,14 @@ export default function FeaturesPage() {
             </div>
             <div className="flex flex-col gap-3">
               <Link
-                className="subtle-focus-ring inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 text-sm font-semibold text-white transition hover:bg-accent-strong"
+                className="subtle-focus-ring inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 text-sm font-semibold text-white shadow-[0_16px_34px_-18px_rgba(108,59,255,0.62)] transition hover:bg-accent-strong"
                 href="/experience"
               >
                 See app preview
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                className="subtle-focus-ring inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-white/28 bg-white/12 px-5 text-sm font-semibold text-white transition hover:bg-white/18"
+                className="subtle-focus-ring inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-white/44 bg-white/16 px-5 text-sm font-semibold text-white transition hover:bg-white/22"
                 href="/contact"
               >
                 Contact support
