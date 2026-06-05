@@ -1,29 +1,30 @@
-import type { Metadata } from 'next'
-import '@fontsource/dm-sans/400.css'
-import '@fontsource/dm-sans/500.css'
-import '@fontsource/dm-sans/700.css'
-import '@fontsource/sora/400.css'
-import '@fontsource/sora/600.css'
-import '@fontsource/sora/700.css'
-import './globals.css'
+import type { Metadata } from "next";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Methna | Premium Muslim Matchmaking',
-  description:
-    'Methna is a premium Muslim matchmaking app for serious relationships, privacy, verification, and respectful connection.',
-  icons: {
-    icon: '/assets/methna-mark.png',
-    shortcut: '/assets/methna-mark.png',
-    apple: '/assets/methna-mark.png',
+  title: {
+    default: "Methna",
+    template: "%s | Methna",
   },
-}
+  description:
+    "A Muslim matchmaking app built for serious connections, privacy, and meaningful compatibility.",
+  metadataBase: new URL("http://localhost:3000"),
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen bg-[#f7f1eb] font-dm-sans text-[#24180f] antialiased">
-        {children}
+    <html lang="en" className="h-full scroll-smooth antialiased">
+      <body className="relative flex min-h-full flex-col bg-background text-foreground">
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
       </body>
     </html>
-  )
+  );
 }
