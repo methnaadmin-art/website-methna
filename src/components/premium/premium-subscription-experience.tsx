@@ -276,14 +276,14 @@ export function PremiumSubscriptionExperience() {
 
             <div className="flex flex-col gap-3 sm:flex-row xl:justify-end">
               <a
-                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong sm:w-auto"
+                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-white shadow-[0_16px_34px_-18px_rgba(108,59,255,0.62)] transition hover:bg-accent-strong sm:w-auto"
                 href={clientEnv.appDownloadUrl}
               >
                 Download App
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center rounded-full border border-white/28 bg-white/12 px-6 text-sm font-semibold text-white transition hover:bg-white/18 sm:w-auto"
+                className="subtle-focus-ring inline-flex h-12 w-full items-center justify-center rounded-full border border-white/44 bg-white/16 px-6 text-sm font-semibold text-white shadow-[0_12px_28px_-24px_rgba(255,255,255,0.58)] transition hover:bg-white/22 sm:w-auto"
                 href="/contact"
               >
                 Contact Support

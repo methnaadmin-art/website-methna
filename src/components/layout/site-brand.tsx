@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { appRoutes } from "@/lib/config/env";
 import { cn } from "@/lib/utils/cn";
 
 export function SiteBrand({
@@ -13,7 +12,7 @@ export function SiteBrand({
 }) {
   return (
     <Link
-      href={appRoutes.premium}
+      href="/"
       className={cn("inline-flex items-center gap-3", className)}
     >
       <img
@@ -22,7 +21,7 @@ export function SiteBrand({
           "h-11 w-11 rounded-2xl shadow-[0_18px_40px_-26px_rgba(95,49,244,0.5)]",
           compact && "h-10 w-10",
         )}
-        src="/methna-mark.svg"
+        src="/methna-app-icon.jpg"
       />
       <span
         className={cn(
