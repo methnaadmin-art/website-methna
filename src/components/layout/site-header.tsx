@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { appRoutes, clientEnv } from "@/lib/config/env";
+import { appRoutes } from "@/lib/config/env";
 import { SiteBrand } from "@/components/layout/site-brand";
 import { cn } from "@/lib/utils/cn";
 
@@ -66,7 +66,7 @@ export function SiteHeader() {
                 Contact
               </Link>
               <a
-                href={clientEnv.appDownloadUrl}
+                href={appRoutes.download}
                 className="subtle-focus-ring inline-flex h-11 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
               >
                 Download App
