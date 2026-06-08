@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 import { appRoutes } from "@/lib/config/env";
 import { SiteBrand } from "@/components/layout/site-brand";
 import { cn } from "@/lib/utils/cn";
@@ -20,6 +22,7 @@ const secondaryNav = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileNav = [...primaryNav, ...secondaryNav];
 
   return (
@@ -29,6 +32,20 @@ export function SiteHeader() {
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center justify-between gap-3 sm:gap-4">
               <SiteBrand />
+
+              <button
+                type="button"
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen((open) => !open)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/80 bg-white/90 text-foreground shadow-sm transition hover:bg-white xl:hidden"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
+              </button>
 
               <div className="hidden items-center gap-2 lg:flex">
                 {secondaryNav.map((item) => (
@@ -74,20 +91,42 @@ export function SiteHeader() {
             </div>
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:hidden">
-            {mobileNav.map((item) => (
-              <Link
-                key={`mobile-${item.href}`}
-                href={item.href}
-                className={cn(
-                  "inline-flex min-h-10 items-center justify-center rounded-full border border-border/70 bg-white/72 px-3 py-2 text-center text-xs font-semibold text-muted transition hover:border-border hover:text-foreground",
-                  pathname === item.href && "border-border text-foreground",
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
+          {isMobileMenuOpen ? (
+            <div className="mt-4 space-y-3 border-t border-border/70 pt-4 xl:hidden">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                <Link
+                  href={appRoutes.contact}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="inline-flex h-11 items-center justify-center rounded-full border border-border/85 bg-white/82 px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
+                >
+                  Contact
+                </Link>
+                <a
+                  href={appRoutes.download}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="subtle-focus-ring inline-flex h-11 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
+                >
+                  Download App
+                </a>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {mobileNav.map((item) => (
+                  <Link
+                    key={`mobile-${item.href}`}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      "inline-flex min-h-10 items-center justify-center rounded-full border border-border/70 bg-white/72 px-3 py-2 text-center text-xs font-semibold text-muted transition hover:border-border hover:text-foreground",
+                      pathname === item.href && "border-border text-foreground",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </header>
