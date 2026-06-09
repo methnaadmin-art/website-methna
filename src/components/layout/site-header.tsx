@@ -47,7 +47,7 @@ export function SiteHeader() {
                 )}
               </button>
 
-              <div className="hidden items-center gap-2 lg:flex">
+              <div className="hidden items-center gap-2 xl:flex">
                 {secondaryNav.map((item) => (
                   <Link
                     key={item.href}
@@ -75,7 +75,7 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            <div className="grid w-full grid-cols-2 gap-2 sm:w-auto sm:grid-cols-2 xl:flex xl:items-center xl:self-auto">
+            <div className="hidden items-center gap-2 xl:flex xl:self-auto">
               <Link
                 href={appRoutes.contact}
                 className="inline-flex h-11 items-center justify-center rounded-full border border-border/85 bg-white/82 px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
