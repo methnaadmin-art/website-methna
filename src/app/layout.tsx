@@ -14,10 +14,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(serverEnv.siteUrl),
   icons: {
     icon: [
-      { url: "/methna_app_icon.jpg", type: "image/jpeg" },
+      { url: "/methna-mark.svg", type: "image/svg+xml" },
     ],
     apple: [{ url: "/methna_app_icon.jpg", type: "image/jpeg" }],
-    shortcut: ["/methna_app_icon.jpg"],
   },
 };
 
