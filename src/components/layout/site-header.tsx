@@ -47,13 +47,13 @@ export function SiteHeader() {
                 )}
               </button>
 
-              <div className="hidden items-center gap-2 xl:flex">
+              <div className="hidden items-center gap-1 xl:flex">
                 {secondaryNav.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "rounded-full px-3 py-2 text-sm font-medium text-muted transition hover:bg-white hover:text-foreground",
+                      "rounded-full px-4 py-2.5 text-sm font-medium text-muted transition-all hover:bg-white hover:text-foreground hover:shadow-sm",
                       pathname === item.href && "bg-white shadow-sm text-foreground",
                     )}
                   >
@@ -68,9 +68,15 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
+                  className={cn(
+                    "relative rounded-full px-4 py-2.5 text-sm font-medium text-foreground/72 transition-all hover:bg-white/80 hover:text-foreground",
+                    pathname.startsWith(item.href.split("#")[0]) && "bg-white/60 text-foreground",
+                  )}
                 >
                   {item.label}
+                  {pathname.startsWith(item.href.split("#")[0]) && (
+                    <span className="absolute -bottom-0.5 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-accent" />
+                  )}
                 </Link>
               ))}
             </nav>
@@ -78,14 +84,19 @@ export function SiteHeader() {
             <div className="hidden items-center gap-2 xl:flex xl:self-auto">
               <Link
                 href={appRoutes.contact}
-                className="inline-flex h-11 items-center justify-center rounded-full border border-border/85 bg-white/82 px-4 py-2 text-sm font-medium text-foreground/82 transition hover:bg-white hover:text-foreground"
+                className="rounded-full px-5 py-2.5 text-sm font-medium text-foreground/72 transition-all hover:bg-white hover:text-foreground hover:shadow-sm"
               >
                 Contact
               </Link>
               <a
                 href={appRoutes.download}
-                className="subtle-focus-ring inline-flex h-11 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
+                className="subtle-focus-ring inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] shadow-sm transition-all hover:bg-accent-strong hover:shadow-md"
               >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
                 Download App
               </a>
             </div>
@@ -104,8 +115,13 @@ export function SiteHeader() {
                 <a
                   href={appRoutes.download}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="subtle-focus-ring inline-flex h-11 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] transition hover:bg-accent-strong"
+                  className="subtle-focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[var(--accent-ink)] shadow-sm transition hover:bg-accent-strong"
                 >
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
                   Download App
                 </a>
               </div>
@@ -117,8 +133,8 @@ export function SiteHeader() {
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      "inline-flex min-h-10 items-center justify-center rounded-full border border-border/70 bg-white/72 px-3 py-2 text-center text-xs font-semibold text-muted transition hover:border-border hover:text-foreground",
-                      pathname === item.href && "border-border text-foreground",
+                      "inline-flex min-h-10 items-center justify-center rounded-full border border-border/70 bg-white/72 px-3 py-2 text-center text-xs font-semibold text-muted shadow-sm transition-all hover:border-border hover:bg-white hover:text-foreground hover:shadow-md",
+                      pathname === item.href && "border-border bg-white text-foreground shadow-sm",
                     )}
                   >
                     {item.label}
